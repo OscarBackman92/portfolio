@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://oscarbackman92.github.io/portfolio/",
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
   "dependencies": {
     "cra-template": "1.2.0",
     "i18next": "^24.2.2",
