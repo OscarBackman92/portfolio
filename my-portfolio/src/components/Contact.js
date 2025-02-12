@@ -1,14 +1,13 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
 function Contact() {
-  const { t } = useTranslation();
-
   return (
     <section className="p-6">
-      <h2 className="text-2xl font-bold mb-4">{t('contact')}</h2>
-      <p>{t('contactText')}</p>
-      <a href="mailto:your.email@example.com" className="text-blue-500">{t('sendEmail')}</a>
+      <h2 className="text-2xl font-bold mb-4">Contact</h2>
+      <p>If you're interested in collaborating, feel free to contact me!</p>
+      <a href="mailto:your.email@example.com" className="text-blue-500">
+        Send an email
+      </a>
     </section>
   );
 }

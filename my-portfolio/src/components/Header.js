@@ -1,13 +1,12 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
 function Header() {
-  const { t } = useTranslation();
-
   return (
     <header className="bg-blue-600 text-white p-6">
-      <h1 className="text-4xl font-bold text-center">{t('welcome')}</h1>
-      <p className="text-center">{t('aboutText')}</p>
+      <h1 className="text-4xl font-bold text-center">Welcome to my Portfolio!</h1>
+      <p className="text-center">
+        I am a web developer who loves to create applications and build user-friendly interfaces. Here are some of my projects!
+      </p>
     </header>
   );
 }
