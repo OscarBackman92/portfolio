@@ -19,7 +19,6 @@ function Contact() {
       ...prev,
       [name]: value,
     }));
-    console.log(`Field updated: ${name} = ${value}`); // Logga varje fältändring
   };
 
   // Skicka formuläret via EmailJS
@@ -27,8 +26,6 @@ function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    console.log('Form submission started');
-    console.log('Form data:', formData); // Logga formulärdata innan vi skickar det
 
     // Skicka formulärdata till EmailJS
     emailjs
@@ -40,18 +37,15 @@ function Contact() {
       )
       .then(
         (response) => {
-          console.log('Email successfully sent:', response);
           setStatusMessage('Thank you for contacting me! I will get back to you shortly.');
           setFormData({ name: '', email: '', subject: '', message: '' });
         },
         (error) => {
-          console.log('Failed to send email:', error);
           setStatusMessage('There was an error. Please try again later.');
         }
       )
       .finally(() => {
         setIsSubmitting(false);
-        console.log('Form submission ended');
       });
   };
 
