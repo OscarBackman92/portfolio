@@ -9,7 +9,7 @@ function GitHubRepos() {
     // GitHub API URL för att hämta publika repos
     const fetchRepos = async () => {
       try {
-        const response = await fetch('https://api.github.com/users/your-username/repos');
+        const response = await fetch('https://api.github.com/users/oscarbackman92/repos');
         const data = await response.json();
         
         if (response.ok) {
