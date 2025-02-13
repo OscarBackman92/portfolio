@@ -6,15 +6,21 @@ import GitHubRepos from './components/GithubRepos';
 import Contact from './components/Contact';
 import Footer from './components/layout/Footer';
 
-
 function App() {
   return (
-    <div className="App">
+    <div className="flex flex-col min-h-screen">
+      {/* Navbar */}
       <Navbar />
-      <Header />
-      <AboutMe />
-      <GitHubRepos />
-      <Contact />
+
+      {/* Main content */}
+      <main className="flex-grow">
+        <Header />
+        <AboutMe />
+        <GitHubRepos />
+        <Contact />
+      </main>
+
+      {/* Footer */}
       <Footer />
     </div>
   );
