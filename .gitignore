@@ -1,44 +1,23 @@
-# Node.js
-node_modules/
-npm-debug.log
-yarn-error.log
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Logs
-logs/
-*.log
-*.log.*
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-# Dependency directories
-jspm_packages/
-bower_components/
+# testing
+/coverage
 
-# Optional npm cache directory
-.npm
+# production
+/build
 
-# Optional eslint cache
-.eslintcache
-
-# Optional REPL history
-.node_repl_history
-
-# Environment variables
-.env
-.env.test
-
-# IDEs and editors
-.idea/
-.vscode/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# OS generated files
+# misc
 .DS_Store
-Thumbs.db
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Build directories
-dist/
-build/
-out/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
