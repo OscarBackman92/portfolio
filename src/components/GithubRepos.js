@@ -13,8 +13,8 @@ function GitHubRepos() {
         const data = await response.json();
         
         if (response.ok) {
-          // Sortera reposen baserat på 'updated_at' för att visa de nyaste högst upp
-          const sortedRepos = data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+          // Sortera reposen baserat på 'created_at' för att visa de nyaste högst upp
+          const sortedRepos = data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
           setRepos(sortedRepos);
         } else {
           setError('Failed to fetch repos');
