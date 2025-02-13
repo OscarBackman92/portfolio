@@ -2,11 +2,11 @@ import React from 'react';
 
 function Header() {
   return (
-    <header className="bg-blue-600 text-white p-6">
-      <h1 className="text-4xl font-bold text-center">Welcome to my Portfolio!</h1>
-      <p className="text-center">
-        I am a web developer who loves to create applications and build user-friendly interfaces. Here are some of my projects!
-      </p>
+    <header className="bg-gray-800 text-white py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 className="text-4xl font-extrabold leading-tight mb-4">Welcome to My Portfolio</h1>
+        <p className="text-xl font-light">Explore my work, experience, and passion for coding.</p>
+      </div>
     </header>
   );
 }

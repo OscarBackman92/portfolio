@@ -38,18 +38,20 @@ function GitHubRepos() {
   }
 
   return (
-    <section className="p-6">
-      <h2 className="text-2xl font-bold mb-4">My GitHub Repositories</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {repos.map((repo) => (
-          <div key={repo.id} className="bg-white shadow-md rounded-lg p-4">
-            <h3 className="text-xl font-semibold">{repo.name}</h3>
-            <p>{repo.description || 'No description provided'}</p>
-            <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 mt-2 inline-block">
-              View on GitHub
-            </a>
-          </div>
-        ))}
+    <section className="py-12 bg-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-semibold text-gray-800 mb-6">My GitHub Repositories</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {repos.map((repo) => (
+            <div key={repo.id} className="bg-white shadow-lg rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-800">{repo.name}</h3>
+              <p className="text-gray-700 mt-2">{repo.description || 'No description available'}</p>
+              <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 mt-4 block">
+                View on GitHub
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
