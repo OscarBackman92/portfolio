@@ -4,6 +4,7 @@ import Header from './components/Header';
 import AboutMe from './components/AboutMe';
 import GitHubRepos from './components/GithubRepos';
 import Contact from './components/Contact';
+import Footer from './components/layout/Footer';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <AboutMe />
       <GitHubRepos />
       <Contact />
+      <Footer />
     </div>
   );
 }
