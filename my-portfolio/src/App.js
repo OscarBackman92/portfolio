@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 import AboutMe from './components/AboutMe';
-import Projects from './components/Projects';
+import GitHubRepos from './components/GithubRepos';
 import Contact from './components/Contact';
 
 
@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Header />
       <AboutMe />
-      <Projects />
+      <GitHubRepos />
       <Contact />
     </div>
   );
