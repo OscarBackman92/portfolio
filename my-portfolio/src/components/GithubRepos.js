@@ -6,13 +6,16 @@ function GitHubRepos() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    // GitHub API URL för att hämta publika repos
     const fetchRepos = async () => {
       try {
-        const response = await fetch('https://api.github.com/users/OscarBackman92/repos');
+        const response = await fetch('https://api.github.com/users/your-username/repos');
         const data = await response.json();
         
         if (response.ok) {
-          setRepos(data);
+          // Sortera reposen baserat på 'updated_at' för att visa de nyaste högst upp
+          const sortedRepos = data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+          setRepos(sortedRepos);
         } else {
           setError('Failed to fetch repos');
         }
@@ -24,7 +27,7 @@ function GitHubRepos() {
     };
 
     fetchRepos();
-  }, []);
+  }, []); // Tom array betyder att useEffect körs bara en gång när komponenten laddas
 
   if (loading) {
     return <p>Loading repositories...</p>;
