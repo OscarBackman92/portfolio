@@ -1,1 +1,0 @@
-web: cd my-portfolio && npm start
