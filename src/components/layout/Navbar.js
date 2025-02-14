@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';  // Se till att detta är importerat korrekt
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,11 +9,11 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-gray-800 p-4">
+    <nav className="bg-gray-800 p-4 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="text-white text-2xl font-bold">
-          <Link to="/">My Portfolio</Link>  {/* Använd Link här */}
+          <Link to="/">My Portfolio</Link>
         </div>
 
         {/* Hamburger icon (visible on small screens) */}
@@ -38,16 +38,16 @@ function Navbar() {
 
         {/* Links (visible on large screens) */}
         <div className="hidden lg:flex space-x-4">
-          <Link to="/" className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg">
+          <Link to="/" className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg transition duration-200">
             Home
           </Link>
-          <Link to="/about" className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg">
+          <Link to="/about" className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg transition duration-200">
             About
           </Link>
-          <Link to="/projects" className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg">
+          <Link to="/projects" className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg transition duration-200">
             Projects
           </Link>
-          <Link to="/contact" className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg">
+          <Link to="/contact" className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg transition duration-200">
             Contact
           </Link>
         </div>

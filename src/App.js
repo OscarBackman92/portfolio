@@ -1,10 +1,11 @@
 import React from 'react';
-import Navbar from '../src/components/layout/Navbar';
+import { Route, Routes } from 'react-router-dom';
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 import Header from './components/Header';
 import AboutMe from './components/AboutMe';
 import GitHubRepos from './components/GithubRepos';
 import Contact from './components/Contact';
-import Footer from './components/layout/Footer';
 
 function App() {
   return (
@@ -14,10 +15,12 @@ function App() {
 
       {/* Main content */}
       <main className="flex-grow">
-        <Header />
-        <AboutMe />
-        <GitHubRepos />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Header />} />
+          <Route path="/about" element={<AboutMe />} />
+          <Route path="/projects" element={<GitHubRepos />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </main>
 
       {/* Footer */}

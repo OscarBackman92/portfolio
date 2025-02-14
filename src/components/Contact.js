@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import emailjs from 'emailjs-com'; // Importera EmailJS
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -21,32 +20,40 @@ function Contact() {
     }));
   };
 
-  // Skicka formuläret via EmailJS
-  const handleSubmit = (e) => {
+  // Skicka formuläret
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    console.log('Form submission started');
+    console.log('Form data:', formData); // Logga formulärdata innan vi skickar det
 
-    // Skicka formulärdata till EmailJS
-    emailjs
-      .send(
-        'service_nua1mrl', // Ersätt med din EmailJS service_id
-        'template_enxgdom', // Ersätt med din EmailJS template_id
-        formData, // Skicka formData som parameter till din mall
-        '6rEVB8tqgeAY6mkgV' // Ersätt med din EmailJS user_id
-      )
-      .then(
-        (response) => {
-          setStatusMessage('Thank you for contacting me! I will get back to you shortly.');
-          setFormData({ name: '', email: '', subject: '', message: '' });
+    try {
+      // Skicka formulärdata till emailJS
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer YOUR_API_KEY',
         },
-        (error) => {
-          setStatusMessage('There was an error. Please try again later.');
-        }
-      )
-      .finally(() => {
-        setIsSubmitting(false);
       });
+
+      if (response.ok) {
+        setStatusMessage('Thank you for contacting me! I will get back to you shortly.');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        console.log('Form successfully submitted');
+      } else {
+        setStatusMessage('There was an error. Please try again later.');
+        console.log('Failed to submit form:', response);
+      }
+    } catch (error) {
+      setStatusMessage('There was an error. Please try again later.');
+      console.error('Error occurred during form submission:', error); // Logga eventuella fel
+    } finally {
+      setIsSubmitting(false);
+      console.log('Form submission ended');
+    }
   };
 
   return (
@@ -96,9 +103,7 @@ function Contact() {
           />
           <button
             type="submit"
-            className={`w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-lg focus:outline-none ${
-              isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-500 transition duration-200'
-            }`}
+            className={`w-full sm:w-auto px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-lg hover:bg-blue-500 transition duration-200`}
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Sending...' : 'Send Message'}
