@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3 {
+  font-weight: 700; /* Tjockare typsnitt för rubriker */
+}
+
+p, span, li {
+  font-weight: 400; /* Normal vikt för brödtext */
+}
