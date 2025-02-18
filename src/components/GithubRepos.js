@@ -27,9 +27,6 @@ function GitHubRepos() {
     fetchRepos();
   }, []);
 
-  if (loading) {
-    return <p>Loading repositories...</p>;
-  }
 
   if (error) {
     return <p>{error}</p>;
