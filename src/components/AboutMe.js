@@ -2,42 +2,45 @@ import React from 'react';
 
 function AboutMe() {
   return (
-    <section className="py-16 bg-gray-50 text-center">
+    <section className="py-16 bg-gray-900 text-white text-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <img src="https://media.licdn.com/dms/image/v2/C4D03AQGsAsu-UNwnyw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1628016204993?e=1745452800&v=beta&t=upYDH3JMlCrZSasqn2Tq84ejb0TOH2g-Xo0TAqMMA7M" alt="Your Name" className="rounded-full w-32 h-32 mx-auto" />
-        <h2 className="text-3xl font-semibold text-gray-800 mb-6">About Me</h2>
-        <p className="text-lg text-gray-700 mb-8">
-          I am a passionate Full Stack Developer with experience in React, Node.js, and various other technologies. I enjoy building scalable and efficient web applications, collaborating with teams, and continuously learning new skills.
+        {/* Profilbild */}
+        <img src="https://media.licdn.com/dms/image/v2/C4D03AQGsAsu-UNwnyw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1628016204993?e=1745452800&v=beta&t=upYDH3JMlCrZSasqn2Tq84ejb0TOH2g-Xo0TAqMMA7M" 
+          alt="Oscar Bäckman" className="rounded-full w-40 h-40 mx-auto shadow-lg border-4 border-gray-700" />
+        
+        <h2 className="text-3xl font-semibold mt-6">About Me</h2>
+        <p className="text-lg text-gray-300 mt-4">
+          I'm a Full Stack Developer with experience in React, Django, and modern web technologies. 
+          Passionate about building scalable applications and continuously improving my skills.
         </p>
 
-        <div className="mb-8">
-          <img
-            src="/Skärmbild 2025-02-15 125830.png" // Use the correct image URL
-            alt="Oscar Bäckman's Diploma"
-            className="w-full h-auto max-w-xs mx-auto rounded-lg shadow-lg"
-          />
+        {/* Diplom och certifikat */}
+        <div className="mt-8">
+          <img src="/Skärmbild 2025-02-15 125830.png" 
+            alt="Oscar Bäckman's Diploma" 
+            className="w-full h-auto max-w-xs mx-auto rounded-lg shadow-lg" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white shadow-md rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-gray-800">Skills</h3>
-            <ul className="list-disc list-inside text-gray-700 mt-4">
+        {/* Skills, Certifikat och Utbildning */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          <div className="bg-gray-800 shadow-md rounded-lg p-6">
+            <h3 className="text-xl font-semibold">Skills</h3>
+            <ul className="list-disc list-inside text-gray-400 mt-4">
               <li>HTML, CSS, JavaScript, Python</li>
-              <li>React, Django, RestAPI</li>
-              <li>Database: PostgreSQL</li>
+              <li>React, Django, REST API</li>
+              <li>PostgreSQL, Git, Agile Development</li>
             </ul>
           </div>
-
-          <div className="bg-white shadow-md rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-gray-800">Certifications</h3>
-            <ul className="list-disc list-inside text-gray-700 mt-4">
+          <div className="bg-gray-800 shadow-md rounded-lg p-6">
+            <h3 className="text-xl font-semibold">Certifications</h3>
+            <ul className="list-disc list-inside text-gray-400 mt-4">
               <li>Frontend Developer - Code Institute</li>
+              <li>Full Stack Development - Code Institute</li>
             </ul>
           </div>
-
-          <div className="bg-white shadow-md rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-gray-800">Education</h3>
-            <ul className="list-disc list-inside text-gray-700 mt-4">
+          <div className="bg-gray-800 shadow-md rounded-lg p-6">
+            <h3 className="text-xl font-semibold">Education</h3>
+            <ul className="list-disc list-inside text-gray-400 mt-4">
               <li>Full Stack Developer - Code Institute</li>
             </ul>
           </div>
