@@ -8,66 +8,24 @@ function Navbar() {
     setIsOpen(!isOpen);
   };
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <nav className="bg-gray-800 p-4">
+    <nav className="bg-gray-900 p-4 shadow-md fixed top-0 w-full z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Logo */}
         <div className="text-white text-2xl font-bold">
           <Link to="/">My Portfolio</Link>
         </div>
-
-        {/* Hamburger icon (visible on small screens) */}
-        <div className="block lg:hidden">
-          <button onClick={toggleMenu} className="text-white focus:outline-none">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
-
-        {/* Links (visible on large screens) */}
-        <div className="hidden lg:flex space-x-4">
-          <Link to="/" className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg">
-            Home
-          </Link>
-          <Link to="/about" className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg">
-            About
-          </Link>
-          <Link to="/projects" className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg">
-            Projects
-          </Link>
-          <Link to="/contact" className="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg">
-            Contact
-          </Link>
-        </div>
-      </div>
-
-      {/* Mobile menu (visible on small screens) */}
-      <div className={`${isOpen ? 'block' : 'hidden'} lg:hidden`}>
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <Link to="/" className="text-white block px-3 py-2 rounded-md text-base font-medium">
-            Home
-          </Link>
-          <Link to="/about" className="text-white block px-3 py-2 rounded-md text-base font-medium">
-            About
-          </Link>
-          <Link to="/projects" className="text-white block px-3 py-2 rounded-md text-base font-medium">
-            Projects
-          </Link>
-          <Link to="/contact" className="text-white block px-3 py-2 rounded-md text-base font-medium">
-            Contact
-          </Link>
+        <button onClick={toggleMenu} className="lg:hidden text-white focus:outline-none">
+          ☰
+        </button>
+        <div className={`lg:flex lg:space-x-6 absolute right-4 top-14 bg-gray-800 text-white w-48 rounded-md shadow-lg lg:static lg:w-auto lg:bg-transparent lg:shadow-none ${isOpen ? 'block' : 'hidden'}`}>
+          <Link to="/" onClick={closeMenu} className="block px-4 py-2 hover:bg-gray-700 rounded-md">Home</Link>
+          <Link to="/about" onClick={closeMenu} className="block px-4 py-2 hover:bg-gray-700 rounded-md">About</Link>
+          <Link to="/projects" onClick={closeMenu} className="block px-4 py-2 hover:bg-gray-700 rounded-md">Projects</Link>
+          <Link to="/contact" onClick={closeMenu} className="block px-4 py-2 hover:bg-gray-700 rounded-md">Contact</Link>
         </div>
       </div>
     </nav>
