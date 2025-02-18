@@ -4,7 +4,7 @@ function AboutMe() {
   return (
     <section className="py-16 bg-gray-50 text-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <img src="https://via.placeholder.com/150" alt="Your Name" className="rounded-full w-32 h-32 mx-auto" />
+        <img src="https://media.licdn.com/dms/image/v2/C4D03AQGsAsu-UNwnyw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1628016204993?e=1745452800&v=beta&t=upYDH3JMlCrZSasqn2Tq84ejb0TOH2g-Xo0TAqMMA7M" alt="Your Name" className="rounded-full w-32 h-32 mx-auto" />
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">About Me</h2>
         <p className="text-lg text-gray-700 mb-8">
           I am a passionate Full Stack Developer with experience in React, Node.js, and various other technologies. I enjoy building scalable and efficient web applications, collaborating with teams, and continuously learning new skills.
@@ -12,7 +12,7 @@ function AboutMe() {
 
         <div className="mb-8">
           <img
-            src="https://via.placeholder.com/400x200" // Use the correct image URL
+            src="/Skärmbild 2025-02-15 125830.png" // Use the correct image URL
             alt="Oscar Bäckman's Diploma"
             className="w-full h-auto max-w-xs mx-auto rounded-lg shadow-lg"
           />
