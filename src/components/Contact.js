@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 
 function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
@@ -14,36 +15,34 @@ function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    try {
-      const response = await fetch('https://your-emailjs-endpoint', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setStatusMessage('Thank you for your message! I will get back to you shortly.');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        setStatusMessage('There was an error. Please try again later.');
-      }
-    } catch (error) {
+    emailjs.sendForm(
+      'service_nua1mrl', // Replace with your EmailJS service ID
+      'template_enxgdom', // Replace with your EmailJS template ID
+      e.target,
+      '6rEVB8tqgeAY6mkgV' // Replace with your EmailJS user ID
+    )
+    .then((response) => {
+      setStatusMessage('Thank you for your message! I will get back to you shortly.');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    })
+    .catch((error) => {
       setStatusMessage('There was an error. Please try again later.');
-    } finally {
+    })
+    .finally(() => {
       setIsSubmitting(false);
-    }
+    });
   };
 
   return (
-    <section className="py-16 bg-gray-900 text-white text-center">
+    <section className="min-h-screen flex items-center justify-center py-24 bg-gray-900 text-white text-center">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-semibold">Contact Me</h2>
-        <p className="text-lg text-gray-300 mt-4">Feel free to reach out for collaborations or job inquiries.</p>
-        <form onSubmit={handleSubmit} className="mt-6 space-y-6">
-          <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your Name" required className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"/>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Your Email" required className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"/>
-          <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="Subject" required className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"/>
-          <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Your Message" required rows="4" className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"></textarea>
+        <h2 className="text-3xl font-semibold mb-4">Contact Me</h2>
+        <p className="text-lg text-gray-300 mb-8">Feel free to reach out for collaborations or job inquiries.</p>
+        <form onSubmit={handleSubmit} className="bg-gray-800 p-6 rounded-lg shadow-lg space-y-6 w-full">
+          <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your Name" required className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white"/>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Your Email" required className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white"/>
+          <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="Subject" required className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white"/>
+          <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Your Message" required rows="4" className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white"></textarea>
           <button type="submit" className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-500 transition duration-200" disabled={isSubmitting}>
             {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
