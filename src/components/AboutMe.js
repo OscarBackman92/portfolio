@@ -14,8 +14,9 @@ function AboutMe() {
         
         <h2 className="text-3xl font-semibold mt-6 animate-fade-in">About Me</h2>
         <p className="text-lg text-gray-300 mt-4 animate-slide-up">
-          I'm a Full Stack Developer with experience in React, Django, and modern web technologies. 
-          Passionate about building scalable applications and continuously improving my skills.
+          Hi! I'm Oscar, a passionate **junior developer** who recently completed my **Full Stack Developer certification**. 
+          While I may be new to professional development, I have a deep enthusiasm for learning and continuously improving my coding skills.
+          I love building things with **React, Django, and modern web technologies**, and I’m eager to grow as a developer through real-world experience and challenges.
         </p>
 
         {/* Diplom och certifikat */}

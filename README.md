@@ -21,7 +21,6 @@
   - [🏗 Contributing](#-contributing)
   - [📜 License](#-license)
   - [📬 Contact](#-contact)
-    - [🎉 Now Your Portfolio README is Ready!](#-now-your-portfolio-readme-is-ready)
 
 ---
 
@@ -113,19 +112,9 @@ This project is licensed under the **MIT License**.
 ---
 
 ## 📬 Contact
-💼 **Portfolio:** [Your Portfolio Link](#)  
-🐙 **GitHub:** [@yourusername](https://github.com/yourusername)  
-📧 **Email:** [your.email@example.com](mailto:your.email@example.com)  
-💼 **LinkedIn:** [Your LinkedIn](https://linkedin.com/in/yourusername)  
+💼 **Portfolio:** [Live Site](https://oscarportfolio-c9ac98cf9943.herokuapp.com/)  
+🐙 **GitHub:** [OscarBackman92](https://github.com/OscarBackman92)  
+📧 **Email:** [Hit me up!](mailto:jan.oscar.backman@gmail.com)  
+💼 **LinkedIn:** [Oscar Bäckman linkedin](https://www.linkedin.com/in/oscar-b%C3%A4ckman-3149b1167/)  
 
 ---
-
-### 🎉 Now Your Portfolio README is Ready!
-✅ **Professional Layout**  
-✅ **Covers Installation, Deployment & Tech Stack**  
-✅ **Includes Contributing & Contact Info**  
-
-📌 **Next Steps:**  
-- Add your **GitHub & LinkedIn links**  
-- Upload a **screenshot preview**  
-- Deploy to **Heroku & update live link**  
