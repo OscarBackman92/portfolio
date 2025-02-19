@@ -17,13 +17,14 @@ function GitHubRepos() {
   return (
     <section className="min-h-screen py-24 bg-gray-900 text-white text-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-semibold mb-8">My GitHub Repositories</h2>
-        {loading ? <p>Loading...</p> : (
+        <h2 className="text-3xl font-semibold mb-8 animate-fade-in">My GitHub Repositories</h2>
+        {loading ? <p className="animate-pulse">Loading...</p> : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {repos.map((repo) => (
+            {repos.map((repo, index) => (
               <div 
                 key={repo.id} 
-                className="bg-gray-800 shadow-lg rounded-lg p-6 hover:shadow-2xl transition duration-300 transform hover:-translate-y-2"
+                className="bg-gray-800 shadow-lg rounded-lg p-6 hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 animate-slide-up"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 <h3 className="text-xl font-semibold">{repo.name}</h3>
                 <p className="text-gray-300 mt-2">{repo.description || 'No description available'}</p>
