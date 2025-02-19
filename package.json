@@ -18,7 +18,7 @@
     "web-vitals": "^4.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
     "deploy": "gh-pages -d build",
     "heroku-postbuild": "npm run build"
@@ -42,6 +42,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "express": "^4.21.2",
+    "serve": "^14.2.4"
   }
 }
