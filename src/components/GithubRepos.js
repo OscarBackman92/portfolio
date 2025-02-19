@@ -17,8 +17,11 @@ function GitHubRepos() {
   return (
     <section className="min-h-screen py-24 bg-gray-900 text-white text-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-semibold mb-8 animate-fade-in">My GitHub Repositories</h2>
-        {loading ? <p className="animate-pulse">Loading...</p> : (
+        <h2 className="text-4xl font-extrabold mb-6 animate-fade-in">My GitHub Projects</h2>
+        <p className="text-lg text-gray-300 mb-8 animate-slide-up">
+          Here are some of the projects I've been working on. I love building web applications and experimenting with new technologies!
+        </p>
+        {loading ? <p className="animate-pulse">Loading projects...</p> : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {repos.map((repo, index) => (
               <div 
