@@ -1,20 +1,19 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom'; // No need to import Router here
+import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Home from './components/Home';
 import AboutMe from './components/AboutMe';
 import GitHubRepos from './components/GithubRepos';
 import Contact from './components/Contact';
 import Footer from './components/layout/Footer';
+import './App.css';
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Navbar */}
+    <div className="app-shell">
       <Navbar />
 
-      {/* Main content */}
-      <main className="flex-grow">
+      <main className="app-main">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutMe />} />
@@ -23,7 +22,6 @@ function App() {
         </Routes>
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

@@ -1,120 +1,106 @@
-# 🌟 My Portfolio
+# ◆ OSCAR.B // DEV TERMINAL
 
-🚀 **Live Demo:** [Your Portfolio Link](#)  
-🛠 **Built With:** React, TailwindCSS, EmailJS, GitHub Pages, Heroku  
+A futuristic, **command-center style** developer portfolio for Oscar Bäckman.
+Dark HUD aesthetic, glowing grid background, terminal panels and a live
+**Mission Log** that pulls projects straight from the GitHub API.
 
-![Portfolio Preview](#)
-
----
-
-## 📌 Table of Contents
-- [🌟 My Portfolio](#-my-portfolio)
-  - [📌 Table of Contents](#-table-of-contents)
-  - [📌 About](#-about)
-  - [⭐ Features](#-features)
-  - [🛠 Installation](#-installation)
-  - [🚀 Deployment](#-deployment)
-    - [**1️⃣ Deploying to Heroku**](#1️⃣-deploying-to-heroku)
-    - [**2️⃣ Deploying to GitHub Pages**](#2️⃣-deploying-to-github-pages)
-  - [🖥 Usage](#-usage)
-  - [🔧 Technologies Used](#-technologies-used)
-  - [🏗 Contributing](#-contributing)
-  - [📜 License](#-license)
-  - [📬 Contact](#-contact)
-
----
-
-## 📌 About
-This is my **developer portfolio**, designed to showcase my **projects, skills, and experience**.  
-Built with **React, TailwindCSS, and EmailJS**, it's optimized for **performance, accessibility, and SEO**.
+🛠 **Built with:** React 19 · React Router 7 · EmailJS · a hand-written CSS design system (no UI framework)
 
 ---
 
 ## ⭐ Features
-✅ **Fully Responsive** – Works on all devices (desktop, tablet, mobile).  
-✅ **Smooth Animations** – Uses **fade-in & slide-up effects**.  
-✅ **Contact Form** – Powered by **EmailJS** for direct email submissions.  
-✅ **Dynamic GitHub Projects** – Fetches latest **public repos** via **GitHub API**.  
-✅ **Dark Theme** – Sleek **modern UI with a dark mode**.  
-✅ **Fast Loading** – Optimized with lazy loading & code splitting.  
+
+- **Command-center UI** — animated grid backdrop, glassmorphism panels with corner
+  brackets, neon-cyan accents and a live UTC clock in the nav.
+- **Live GitHub feed** — the Projects page fetches repos from the GitHub API,
+  filters out forks/archived repos, sorts by stars, and offers a language filter.
+  Includes loading skeletons, an empty state and graceful error/rate-limit handling.
+- **Typewriter hero** — the home page cycles through roles in a terminal readout.
+- **Operator dossier** — the About page styles bio, skills, certs and the diploma
+  as an ID card (with a monogram fallback if the profile photo fails to load).
+- **Comms channel** — the Contact form sends email through EmailJS with clear
+  sending / success / error states.
+- **Fully responsive** and respects `prefers-reduced-motion`.
 
 ---
 
-## 🛠 Installation
-To run the portfolio locally:  
+## 🧱 Tech stack
+
+| Layer        | Tech                                              |
+| ------------ | ------------------------------------------------- |
+| Framework    | React 19 (Create React App / `react-scripts` 5)   |
+| Routing      | React Router 7 (`BrowserRouter`)                  |
+| Styling      | Custom CSS design system + CSS variables          |
+| Fonts        | Orbitron · Rajdhani · Share Tech Mono (Google)    |
+| Data         | GitHub REST API (public, unauthenticated)         |
+| Email        | EmailJS                                            |
+| Prod server  | Express (`server.js`) — serves the static build   |
+
+> There is **no Tailwind / Framer Motion** — everything is custom CSS in
+> `src/index.css` (design tokens + primitives) and per-component `.css` files.
+
+---
+
+## 🛠 Local development
 
 ```sh
-git clone https://github.com/yourusername/portfolio.git
-cd portfolio
 npm install
-npm start
+npm run dev        # React dev server with hot reload → http://localhost:3000
 ```
 
-Then open **`http://localhost:3000`** in your browser.
+Other scripts:
+
+```sh
+npm run build      # production build into /build
+npm test           # run the test suite
+npm start          # serve the production build via Express (used by Heroku)
+```
+
+Edit your GitHub username in `src/components/GithubRepos.js`
+(`GITHUB_USER`) and your EmailJS IDs in `src/components/Contact.js`.
 
 ---
 
-## 🚀 Deployment
-### **1️⃣ Deploying to Heroku**
+## 🚀 Deployment — where to host it
+
+This is a **static single-page app** (it only talks to the GitHub API from the
+browser), so a static host is the simplest and cheapest option.
+
+### ✅ Recommended: Netlify or Vercel (free, zero config)
+
+1. Push this repo to GitHub.
+2. Import the repo on [Netlify](https://netlify.com) or [Vercel](https://vercel.com).
+3. Settings (usually auto-detected):
+   - **Build command:** `npm run build`
+   - **Publish / output directory:** `build`
+4. Deploy. SPA routing already works — `public/_redirects` (Netlify) and
+   `vercel.json` (Vercel) rewrite every path to `index.html`, so deep links like
+   `/projects` won't 404.
+
+### Heroku (already configured)
+
+`Procfile`, `server.js` and the `heroku-postbuild` script are set up:
+
 ```sh
-heroku login
 heroku create my-portfolio
-git add .
-git commit -m "Deploy to Heroku"
 git push heroku main
-heroku open
 ```
 
-### **2️⃣ Deploying to GitHub Pages**
-1. Set your GitHub repo URL in `package.json`:
-   ```json
-   "homepage": "https://yourusername.github.io/portfolio"
-   ```
-2. Run:
-   ```sh
-   npm run deploy
-   ```
+Express serves `/build` with an SPA fallback. Works, but Heroku has no free tier
+and running a Node server just to serve static files is overkill — prefer
+Netlify/Vercel.
 
----
+### GitHub Pages — possible, with a caveat
 
-## 🖥 Usage
-- **Home Page:** Introduction and CTA buttons to projects & contact.  
-- **About Me Page:** Skills, certifications, and education details.  
-- **Projects Page:** Auto-fetches **GitHub Repositories** dynamically.  
-- **Contact Page:** Sends emails using **EmailJS API**.  
-
----
-
-## 🔧 Technologies Used
-- **Frontend:** React.js, TailwindCSS  
-- **Animations:** Framer Motion, Tailwind Animations  
-- **API Integration:** GitHub API, EmailJS  
-- **Hosting:** Heroku, GitHub Pages  
-
----
-
-## 🏗 Contributing
-Want to improve this portfolio? Feel free to fork & submit a PR! 🚀
-
-```sh
-git clone https://github.com/yourusername/portfolio.git
-git checkout -b feature-branch
-git commit -m "Added new feature"
-git push origin feature-branch
-```
-Then submit a pull request.
-
----
-
-## 📜 License
-This project is licensed under the **MIT License**.
+A `gh-pages` script exists, **but** GitHub Pages has no SPA fallback, so direct
+hits / refreshes on `/about`, `/projects`, `/contact` return 404 with
+`BrowserRouter`. To use Pages, either switch to `HashRouter` in `src/index.js`
+or add a `404.html` redirect hack. Netlify/Vercel avoid this entirely.
 
 ---
 
 ## 📬 Contact
-💼 **Portfolio:** [Live Site](https://oscarportfolio-c9ac98cf9943.herokuapp.com/)  
-🐙 **GitHub:** [OscarBackman92](https://github.com/OscarBackman92)  
-📧 **Email:** [Hit me up!](mailto:jan.oscar.backman@gmail.com)  
-💼 **LinkedIn:** [Oscar Bäckman linkedin](https://www.linkedin.com/in/oscar-b%C3%A4ckman-3149b1167/)  
 
----
+- 🐙 GitHub: [OscarBackman92](https://github.com/OscarBackman92)
+- 💼 LinkedIn: [Oscar Bäckman](https://www.linkedin.com/in/oscar-b%C3%A4ckman-3149b1167/)
+- 📧 Email: jan.oscar.backman@gmail.com

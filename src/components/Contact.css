@@ -1,0 +1,112 @@
+.contact {
+  justify-content: center;
+}
+.contact__inner {
+  max-width: 720px;
+  text-align: center;
+}
+.contact__title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  margin-bottom: 0.8rem;
+}
+.contact__lede {
+  color: var(--text-dim);
+  margin-bottom: 2.2rem;
+  max-width: 50ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact__form {
+  padding: 1.6rem;
+  text-align: left;
+}
+.contact__form-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.1rem;
+  margin-bottom: 1.4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.contact__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.1rem;
+}
+.contact__label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.contact__field input,
+.contact__field textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text);
+  background: rgba(5, 7, 13, 0.6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.8rem 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  resize: vertical;
+}
+.contact__field input::placeholder,
+.contact__field textarea::placeholder {
+  color: var(--text-faint);
+}
+.contact__field input:focus,
+.contact__field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 0 18px rgba(34, 211, 238, 0.15);
+}
+
+.contact__submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+.contact__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.contact__status {
+  margin-top: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+.contact__status--ok { color: var(--green); }
+.contact__status--err { color: var(--danger); }
+
+.contact__direct {
+  margin-top: 1.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+}
+.contact__direct-link {
+  color: var(--text-dim);
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.contact__direct-link:hover { color: var(--accent); border-color: var(--accent); }
+
+@media (max-width: 560px) {
+  .contact__row { grid-template-columns: 1fr; }
+}

@@ -1,12 +1,34 @@
 import React from 'react';
+import './Footer.css';
 
 function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="fixed bottom-0 left-0 w-full bg-gray-900 text-white text-center py-4 shadow-md z-50">
-      <p>© 2025 Oscar Bäckman. All rights reserved.</p>
-      <div className="flex justify-center space-x-6 mt-2">
-        <a href="https://github.com/OscarBackman92" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">GitHub</a>
-        <a href="https://www.linkedin.com/in/oscar-b%C3%A4ckman-3149b1167/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">LinkedIn</a>
+    <footer className="footer">
+      <div className="footer__inner">
+        <div className="footer__block">
+          <span className="dot"></span>
+          <span className="footer__mono">SYSTEM OPERATIONAL</span>
+        </div>
+
+        <div className="footer__links">
+          <a href="https://github.com/OscarBackman92" target="_blank" rel="noopener noreferrer" className="footer__link">
+            GitHub
+          </a>
+          <span className="footer__sep">/</span>
+          <a href="https://www.linkedin.com/in/oscar-b%C3%A4ckman-3149b1167/" target="_blank" rel="noopener noreferrer" className="footer__link">
+            LinkedIn
+          </a>
+          <span className="footer__sep">/</span>
+          <a href="mailto:jan.oscar.backman@gmail.com" className="footer__link">
+            Email
+          </a>
+        </div>
+
+        <div className="footer__block footer__copy">
+          <span className="footer__mono">© {year} OSCAR BÄCKMAN</span>
+        </div>
       </div>
     </footer>
   );

@@ -1,25 +1,296 @@
-body {
+/* ============================================================
+   COMMAND CENTER — Global design system
+   ============================================================ */
+
+:root {
+  /* Surfaces */
+  --bg: #05070d;
+  --bg-elev: #0a0f1a;
+  --panel: rgba(13, 20, 33, 0.55);
+  --panel-solid: #0b111d;
+  --line: rgba(56, 189, 248, 0.14);
+  --line-strong: rgba(56, 189, 248, 0.35);
+  --grid: rgba(56, 189, 248, 0.045);
+
+  /* Text */
+  --text: #d7e3f4;
+  --text-dim: #7c8aa3;
+  --text-faint: #4a5568;
+
+  /* Accents */
+  --accent: #22d3ee;          /* cyan */
+  --accent-2: #38bdf8;        /* sky */
+  --magenta: #e879f9;         /* secondary */
+  --green: #34d399;           /* online */
+  --amber: #fbbf24;           /* warning */
+  --danger: #f87171;          /* error */
+  --accent-glow: rgba(34, 211, 238, 0.55);
+
+  /* Type */
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Rajdhani', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Share Tech Mono', 'JetBrains Mono', monospace;
+
+  /* Layout */
+  --nav-h: 64px;
+  --maxw: 1180px;
+  --radius: 4px;
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* ---- Fixed atmospheric background ---- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, #000 30%, transparent 95%);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, #000 30%, transparent 95%);
 }
 
-body {
-  font-family: 'Roboto', sans-serif;
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(34, 211, 238, 0.10), transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(232, 121, 249, 0.08), transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(56, 189, 248, 0.07), transparent 55%);
+  pointer-events: none;
 }
 
-h1, h2, h3 {
-  font-weight: 700; /* Tjockare typsnitt för rubriker */
+code, pre {
+  font-family: var(--font-mono);
 }
 
-p, span, li {
-  font-weight: 400; /* Normal vikt för brödtext */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ---- Custom scrollbar ---- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--accent), var(--accent-2));
+  border-radius: 6px;
+  border: 2px solid var(--bg);
+}
+::selection {
+  background: var(--accent);
+  color: #03121a;
+}
+
+/* ============================================================
+   Reusable HUD primitives
+   ============================================================ */
+
+/* Mono uppercase label, e.g. // SYSTEM ONLINE */
+.hud-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* Section wrapper */
+.section {
+  min-height: calc(100vh - var(--nav-h));
+  padding: 7rem 1.5rem 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.section-inner {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+
+/* Display heading */
+.display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+}
+
+/* Glass panel with corner brackets */
+.panel {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.panel::before,
+.panel::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}
+.panel::before {
+  top: -1px; left: -1px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+.panel::after {
+  bottom: -1px; right: -1px;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+/* HUD button */
+.btn {
+  --c: var(--accent);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.6rem;
+  color: #03121a;
+  background: var(--c);
+  border: 1px solid var(--c);
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  cursor: pointer;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, background 0.25s ease;
+  font-weight: 700;
+}
+.btn:hover {
+  box-shadow: 0 0 22px var(--accent-glow);
+  transform: translateY(-2px);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--accent);
+}
+.btn--ghost:hover {
+  background: rgba(34, 211, 238, 0.08);
+}
+
+/* Status dot */
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse 2s infinite;
+}
+
+/* ============================================================
+   Animations
+   ============================================================ */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.4; }
+  94% { opacity: 1; }
+  96% { opacity: 0.7; }
+  97% { opacity: 1; }
+}
+
+@keyframes scan {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(100%); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.reveal {
+  opacity: 0;
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; }
 }
