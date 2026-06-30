@@ -82,6 +82,23 @@
   gap: 0.8rem;
   margin-bottom: 0.7rem;
 }
+.repos__card-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+.repos__tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--radius);
+  white-space: nowrap;
+}
 .repos__name {
   font-family: var(--font-display);
   font-size: 1.02rem;

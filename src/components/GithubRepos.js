@@ -4,6 +4,49 @@ import './GithubRepos.css';
 const GITHUB_USER = 'OscarBackman92';
 const API_URL = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`;
 
+/** Verified live URLs — overrides stale GitHub homepage fields */
+const HOMEPAGE_OVERRIDES = {
+  portfolio: 'https://portfolio-alpha-steel-ej8y4905sd.vercel.app',
+};
+
+/** Known-dead hosts (e.g. expired Heroku free tier) */
+const DEAD_HOMEPAGE_HOSTS = new Set([
+  'oscarportfolio-c9ac98cf9943.herokuapp.com',
+  'fitnessapi-d773a1148384.herokuapp.com',
+  'oscarwaffle-be7490c12beb.herokuapp.com',
+  'python3battleship-c25008d31b4b.herokuapp.com',
+]);
+
+/** Backend / code-only repos — no Live button */
+const CODE_ONLY_REPOS = new Set([
+  'af-jobbansokan-api',
+  'demo-backend',
+  'budget-tracker-django',
+  'test-django',
+  'java',
+  'fitnesspp5api',
+  'budget_frontend',
+]);
+
+function getLiveUrl(repo) {
+  if (CODE_ONLY_REPOS.has(repo.name)) return null;
+
+  const url = HOMEPAGE_OVERRIDES[repo.name] || repo.homepage;
+  if (!url) return null;
+
+  try {
+    if (DEAD_HOMEPAGE_HOSTS.has(new URL(url).hostname)) return null;
+  } catch {
+    return null;
+  }
+
+  return url;
+}
+
+function isApiRepo(repo) {
+  return CODE_ONLY_REPOS.has(repo.name);
+}
+
 const LANG_COLORS = {
   JavaScript: '#f1e05a',
   TypeScript: '#3178c6',
@@ -103,7 +146,7 @@ function GitHubRepos() {
         {status === 'ready' && (
           <div className="repos__toolbar reveal" style={{ animationDelay: '0.2s' }}>
             <span className="repos__count">
-              {visible.length} {visible.length === 1 ? 'unit' : 'units'} deployed
+              {visible.length} {visible.length === 1 ? 'project' : 'projects'}
             </span>
             <div className="repos__filters">
               {languages.map((lang) => (
@@ -154,7 +197,9 @@ function GitHubRepos() {
         {/* Grid */}
         {status === 'ready' && visible.length > 0 && (
           <div className="repos__grid">
-            {visible.map((repo, i) => (
+            {visible.map((repo, i) => {
+              const liveUrl = getLiveUrl(repo);
+              return (
               <article
                 className="repos__card panel reveal"
                 key={repo.id}
@@ -162,15 +207,20 @@ function GitHubRepos() {
               >
                 <header className="repos__card-head">
                   <h3 className="repos__name">{repo.name}</h3>
-                  {repo.language && (
-                    <span className="repos__lang">
-                      <span
-                        className="repos__lang-dot"
-                        style={{ background: LANG_COLORS[repo.language] || '#8b98a8' }}
-                      ></span>
-                      {repo.language}
-                    </span>
-                  )}
+                  <div className="repos__card-badges">
+                    {isApiRepo(repo) && (
+                      <span className="repos__tag">API</span>
+                    )}
+                    {repo.language && (
+                      <span className="repos__lang">
+                        <span
+                          className="repos__lang-dot"
+                          style={{ background: LANG_COLORS[repo.language] || '#8b98a8' }}
+                        ></span>
+                        {repo.language}
+                      </span>
+                    )}
+                  </div>
                 </header>
 
                 <p className="repos__desc">
@@ -192,9 +242,9 @@ function GitHubRepos() {
                   >
                     ▸ Code
                   </a>
-                  {repo.homepage && (
+                  {liveUrl && (
                     <a
-                      href={repo.homepage}
+                      href={liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="repos__link repos__link--live"
@@ -204,7 +254,8 @@ function GitHubRepos() {
                   )}
                 </footer>
               </article>
-            ))}
+            );
+            })}
           </div>
         )}
       </div>
