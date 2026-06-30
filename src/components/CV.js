@@ -37,6 +37,21 @@ const SKILL_GROUPS = [
 
 const EXPERIENCE = [
   {
+    role: 'Orderadministratör',
+    company: 'AVOKI Group AB',
+    period: 'Feb 2026 – pågående',
+    current: true,
+    bullets: [
+      'Hanterar försäljningsorder inom IT, AV och dokumenthantering i SuperOffice och Visma Business.',
+      'Bidrar aktivt i förbättringsprocesser för produkter och artikelregister.',
+      'Deltar i implementeringen av e-handelsplattformen Nettailer med fokus på effektivare sälj- och inköpsflöden.',
+      'Ansvarar för administration av artikelregister, produktpaket och bidhantering i Nettailer.',
+      'Hanterar intern handel av telefoner och IT-utrustning, inklusive sortiment och kontakt med tillverkare.',
+      'Stöttar kollegor med support och testning vid utveckling och uppdateringar av plattformen.',
+      'Utför lagerjusteringar och deltar vid inventeringar.',
+    ],
+  },
+  {
     role: 'Business Operations Coordinator',
     company: 'ADNS House of Service AB',
     period: 'Nov 2018 – Okt 2025',
@@ -50,20 +65,6 @@ const EXPERIENCE = [
       'Agerar koordinator och projektledare gentemot försäljning, operations, support och externa parter.',
       'Utvecklar interna kontroller, processer och attestflöden samt säkerställer regelefterlevnad (skatt, moms, redovisning).',
       'Kontorsansvar för kontinuerlig drift.',
-    ],
-  },
-  {
-    role: 'Orderadministratör',
-    company: 'AVOKI Group AB',
-    period: 'Feb 2026 – Juli 2026',
-    bullets: [
-      'Hanterade försäljningsorder inom IT, AV och dokumenthantering i SuperOffice och Visma Business.',
-      'Bidrog aktivt i förbättringsprocesser för produkter och artikelregister.',
-      'Deltog i implementeringen av e-handelsplattformen Nettailer med fokus på effektivare sälj- och inköpsflöden.',
-      'Ansvarade för administration av artikelregister, produktpaket och bidhantering i Nettailer.',
-      'Hanterade intern handel av telefoner och IT-utrustning, inklusive sortiment och kontakt med tillverkare.',
-      'Stöttade kollegor med support och testning vid utveckling och uppdateringar av plattformen.',
-      'Utförde lagerjusteringar och deltog vid inventeringar.',
     ],
   },
   {
@@ -187,9 +188,15 @@ function CV() {
             <span className="hud-label">{'// Arbetslivserfarenhet'}</span>
             <ul className="cv__timeline cv__timeline--jobs">
               {EXPERIENCE.map((job) => (
-                <li className="cv__timeline-item" key={`${job.company}-${job.period}`}>
+                <li
+                  className={`cv__timeline-item${job.current ? ' cv__timeline-item--current' : ''}`}
+                  key={`${job.company}-${job.period}`}
+                >
                   <div className="cv__timeline-head">
-                    <strong>{job.role}</strong>
+                    <strong>
+                      {job.role}
+                      {job.current && <span className="cv__current-badge">Nuvarande</span>}
+                    </strong>
                     <span>{job.period}</span>
                   </div>
                   <p className="cv__timeline-org">{job.company}</p>

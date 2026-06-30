@@ -109,7 +109,7 @@ function Home() {
           { k: 'STACK', v: 'React · Visma · CRM' },
           { k: 'CERT', v: 'Full Stack Dev' },
           { k: 'STATUS', v: 'Open to work' },
-          { k: 'BASE', v: 'Stockholm 🇸🇪' },
+          { k: 'BASE', v: 'Stockholm, Sverige' },
         ].map((s) => (
           <div className="home__stat" key={s.k}>
             <span className="home__stat-k">{s.k}</span>

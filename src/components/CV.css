@@ -175,6 +175,25 @@
   gap: 1.6rem;
 }
 
+.cv__timeline-item--current {
+  border-left-color: var(--green);
+}
+
+.cv__current-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius);
+  vertical-align: middle;
+}
+
 .cv__job-summary {
   color: var(--text-dim);
   font-size: 0.95rem;

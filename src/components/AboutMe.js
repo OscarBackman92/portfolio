@@ -10,11 +10,13 @@ const SKILLS = [
   'SharePoint', 'Power BI', 'GitHub', 'VS Code',
 ];
 
-const PROFILE_IMG =
+const PROFILE_IMG = '/profile.jpg';
+const PROFILE_IMG_FALLBACK =
   'https://media.licdn.com/dms/image/v2/C4D03AQGsAsu-UNwnyw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1628016204993?e=1745452800&v=beta&t=upYDH3JMlCrZSasqn2Tq84ejb0TOH2g-Xo0TAqMMA7M';
 
 function AboutMe() {
   const [imgError, setImgError] = useState(false);
+  const [useFallback, setUseFallback] = useState(false);
   const [diplomaError, setDiplomaError] = useState(false);
 
   return (
@@ -33,10 +35,13 @@ function AboutMe() {
                 <span className="about__monogram">OB</span>
               ) : (
                 <img
-                  src={PROFILE_IMG}
+                  src={useFallback ? PROFILE_IMG_FALLBACK : PROFILE_IMG}
                   alt="Oscar Bäckman"
                   loading="lazy"
-                  onError={() => setImgError(true)}
+                  onError={() => {
+                    if (!useFallback) setUseFallback(true);
+                    else setImgError(true);
+                  }}
                 />
               )}
               <span className="about__avatar-ring"></span>

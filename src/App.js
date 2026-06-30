@@ -6,6 +6,7 @@ import AboutMe from './components/AboutMe';
 import GitHubRepos from './components/GithubRepos';
 import Contact from './components/Contact';
 import CV from './components/CV';
+import NotFound from './components/NotFound';
 import Footer from './components/layout/Footer';
 import './App.css';
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/projects" element={<GitHubRepos />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cv" element={<CV />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
