@@ -102,8 +102,16 @@ function Contact() {
         </form>
 
         <div className="contact__direct reveal" style={{ animationDelay: '0.3s' }}>
+          <a href="tel:+46720101647" className="contact__direct-link">
+            072-010 16 47
+          </a>
+          <span className="contact__direct-sep"> · </span>
           <a href="mailto:jan.oscar.backman@gmail.com" className="contact__direct-link">
             jan.oscar.backman@gmail.com
+          </a>
+          <span className="contact__direct-sep"> · </span>
+          <a href="/cv/oscar-backman-cv.pdf" download className="contact__direct-link">
+            Ladda ner CV (PDF)
           </a>
         </div>
       </div>

@@ -5,6 +5,7 @@ import Home from './components/Home';
 import AboutMe from './components/AboutMe';
 import GitHubRepos from './components/GithubRepos';
 import Contact from './components/Contact';
+import CV from './components/CV';
 import Footer from './components/layout/Footer';
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/about" element={<AboutMe />} />
           <Route path="/projects" element={<GitHubRepos />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/cv" element={<CV />} />
         </Routes>
       </main>
 

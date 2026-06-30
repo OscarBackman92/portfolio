@@ -6,7 +6,8 @@ const links = [
   { to: '/', label: 'Home', code: '01' },
   { to: '/about', label: 'About', code: '02' },
   { to: '/projects', label: 'Projects', code: '03' },
-  { to: '/contact', label: 'Contact', code: '04' },
+  { to: '/cv', label: 'CV', code: '04' },
+  { to: '/contact', label: 'Contact', code: '05' },
 ];
 
 function Navbar() {

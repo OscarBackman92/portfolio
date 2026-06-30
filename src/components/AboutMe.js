@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './AboutMe.css';
 
+const CV_PDF = '/cv/oscar-backman-cv.pdf';
+
 const SKILLS = [
-  'HTML', 'CSS', 'JavaScript', 'Python',
-  'React', 'Django', 'REST API',
-  'PostgreSQL', 'Git', 'Agile',
+  'SuperOffice CRM', 'Visma Business', 'Wint', 'Nettailer',
+  'React', 'Django', 'JavaScript', 'Python',
+  'SharePoint', 'Power BI', 'GitHub', 'VS Code',
 ];
 
 const PROFILE_IMG =
@@ -12,6 +15,7 @@ const PROFILE_IMG =
 
 function AboutMe() {
   const [imgError, setImgError] = useState(false);
+  const [diplomaError, setDiplomaError] = useState(false);
 
   return (
     <section className="about section">
@@ -38,26 +42,35 @@ function AboutMe() {
               <span className="about__avatar-ring"></span>
             </div>
             <h3 className="about__id-name">Oscar Bäckman</h3>
-            <p className="about__id-role">Full Stack Developer</p>
+            <p className="about__id-role">Business Operations · Full Stack</p>
 
             <dl className="about__id-meta">
               <div><dt>ID</dt><dd>OB-92</dd></div>
-              <div><dt>CLEARANCE</dt><dd>Junior</dd></div>
+              <div><dt>BASE</dt><dd>Stockholm</dd></div>
               <div><dt>STATUS</dt><dd className="ok">● Available</dd></div>
-              <div><dt>BASE</dt><dd>Sweden</dd></div>
+              <div><dt>TEL</dt><dd>072-010 16 47</dd></div>
             </dl>
+
+            <div className="about__id-actions">
+              <Link to="/cv" className="btn about__id-btn">
+                ▸ View CV
+              </Link>
+              <a href={CV_PDF} download className="btn btn--ghost about__id-btn">
+                ▸ PDF
+              </a>
+            </div>
           </aside>
 
           {/* Bio + modules */}
           <div className="about__body">
             <p className="about__bio reveal" style={{ animationDelay: '0.2s' }}>
-              Hi! I'm Oscar, a passionate <span className="hl">junior developer</span> who
-              recently completed my <span className="hl">Full Stack Developer</span>{' '}
-              certification. While new to professional development, I bring deep
-              enthusiasm for learning and constantly sharpening my craft. I love
-              building things with <span className="hl">React</span>,{' '}
-              <span className="hl">Django</span> and modern web technologies, and I'm
-              eager to grow through real-world challenges.
+              Hej! Jag är Oscar — strukturerad och lösningsorienterad med lång
+              erfarenhet av <span className="hl">affärssystem</span>, ekonomi och
+              processutveckling. Efter år som Business Operations Coordinator kombinerar
+              jag operativt driv med ett genuint intresse för teknik. Jag har nyligen
+              tagit <span className="hl">Full Stack Development</span>-diplom och bygger
+              vidare med <span className="hl">React</span>,{' '}
+              <span className="hl">Django</span> och moderna verktyg.
             </p>
 
             <div className="about__modules">
@@ -73,15 +86,18 @@ function AboutMe() {
               <div className="about__module panel reveal" style={{ animationDelay: '0.3s' }}>
                 <span className="hud-label">{'// Certifications'}</span>
                 <ul className="about__list">
-                  <li>Frontend Developer — Code Institute</li>
-                  <li>Full Stack Development — Code Institute</li>
+                  <li>Full Stack Development — Code Institute (2024)</li>
+                  <li>Certifierad Ekonomiassistent — Påhlmans Handelsinstitut</li>
+                  <li>MS Teams & SharePoint — Informator</li>
                 </ul>
               </div>
 
               <div className="about__module panel reveal" style={{ animationDelay: '0.35s' }}>
                 <span className="hud-label">{'// Education'}</span>
                 <ul className="about__list">
-                  <li>Full Stack Developer Diploma — Code Institute</li>
+                  <li>Full Stack Development — Code Institute</li>
+                  <li>Tekniskt gymnasium — Värmdö Tekniska Gymnasium</li>
+                  <li>Ekonomiutbildning — Komvux Värmdö</li>
                 </ul>
               </div>
             </div>
@@ -91,11 +107,22 @@ function AboutMe() {
         {/* Diploma */}
         <div className="about__diploma panel reveal" style={{ animationDelay: '0.4s' }}>
           <span className="hud-label">{'// Credential — Diploma'}</span>
-          <img
-            src="/Skärmbild 2025-02-15 125830.png"
-            alt="Oscar Bäckman's Full Stack Developer Diploma"
-            loading="lazy"
-          />
+          {diplomaError ? (
+            <div className="about__diploma-fallback">
+              <span className="about__diploma-icon">◆</span>
+              <p>Full Stack Developer Diploma — Code Institute</p>
+              <Link to="/cv" className="about__diploma-link">
+                View credentials on CV →
+              </Link>
+            </div>
+          ) : (
+            <img
+              src="/diploma.png"
+              alt="Oscar Bäckman's Full Stack Developer Diploma"
+              loading="lazy"
+              onError={() => setDiplomaError(true)}
+            />
+          )}
         </div>
       </div>
     </section>

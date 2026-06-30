@@ -1,0 +1,263 @@
+.cv {
+  justify-content: flex-start;
+}
+
+.cv__inner {
+  max-width: 820px;
+}
+
+.cv__header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.4rem;
+}
+
+.cv__name {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  margin-bottom: 0.4rem;
+  background: linear-gradient(180deg, #ffffff 0%, #9fd9ec 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cv__title {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+
+.cv__location {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+.cv__download {
+  flex-shrink: 0;
+}
+
+.cv__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  padding: 0.9rem 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+
+.cv__contacts a {
+  color: var(--text-dim);
+  transition: color 0.2s ease;
+}
+.cv__contacts a:hover {
+  color: var(--accent);
+}
+
+.cv__contact-sep {
+  color: var(--text-faint);
+}
+
+.cv__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cv__block {
+  padding: 1.4rem 1.5rem;
+}
+.cv__block .hud-label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.cv__text {
+  color: var(--text-dim);
+  line-height: 1.75;
+  font-size: 1.02rem;
+}
+
+.cv__inline-link {
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+.cv__inline-link:hover {
+  border-color: var(--accent);
+}
+
+.cv__skills {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.cv__skill-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 0.6rem;
+}
+
+.cv__skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cv__skill-tag {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  padding: 0.3rem 0.7rem;
+  color: var(--text);
+  border: 1px solid var(--line);
+  background: rgba(34, 211, 238, 0.04);
+  border-radius: var(--radius);
+}
+
+.cv__timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.cv__timeline-item {
+  padding-left: 1rem;
+  border-left: 2px solid var(--line-strong);
+}
+
+.cv__timeline-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.cv__timeline-head strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.cv__timeline-head span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.cv__timeline-org {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  margin-bottom: 0.3rem;
+}
+
+.cv__timeline-item p:last-child {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.cv__timeline--jobs {
+  gap: 1.6rem;
+}
+
+.cv__job-summary {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-bottom: 0.6rem;
+}
+
+.cv__bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.cv__bullets li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.cv__bullets li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.75rem;
+  top: 0.15rem;
+}
+
+.cv__skill-tag--trait {
+  border-color: rgba(232, 121, 249, 0.35);
+  background: rgba(232, 121, 249, 0.06);
+}
+
+.cv__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 560px) {
+  .cv__header-row {
+    flex-direction: column;
+  }
+  .cv__download {
+    width: 100%;
+    justify-content: center;
+  }
+  .cv__contacts {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cv__contact-sep {
+    display: none;
+  }
+}
+
+@media print {
+  .cv__download,
+  .cv__footer,
+  .navbar,
+  .footer {
+    display: none !important;
+  }
+  .cv {
+    padding-top: 1rem;
+    min-height: auto;
+  }
+  .cv__block {
+    break-inside: avoid;
+    border: 1px solid #ccc;
+    background: white;
+    color: black;
+  }
+  .cv__text,
+  .cv__timeline-item p {
+    color: #333;
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 function Footer() {
@@ -20,6 +21,10 @@ function Footer() {
           <a href="https://www.linkedin.com/in/oscar-b%C3%A4ckman-3149b1167/" target="_blank" rel="noopener noreferrer" className="footer__link">
             LinkedIn
           </a>
+          <span className="footer__sep">/</span>
+          <Link to="/cv" className="footer__link">
+            CV
+          </Link>
           <span className="footer__sep">/</span>
           <a href="mailto:jan.oscar.backman@gmail.com" className="footer__link">
             Email

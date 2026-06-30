@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import './Home.css';
 
 const ROLES = [
+  'BUSINESS OPERATIONS',
   'FULL STACK DEVELOPER',
-  'REACT ENGINEER',
-  'DJANGO BUILDER',
+  'PROCESS OPTIMIZER',
   'PROBLEM SOLVER',
 ];
 
@@ -61,16 +61,19 @@ function Home() {
           </div>
 
           <p className="home__lede reveal" style={{ animationDelay: '0.3s' }}>
-            Junior developer building interactive, fast and accessible web
-            applications with <span className="hl">React</span>,{' '}
-            <span className="hl">JavaScript</span> and{' '}
-            <span className="hl">Django</span>. Always hunting the next
-            challenge to grow.
+            Strukturerad och lösningsorienterad med erfarenhet av affärssystem
+            och ekonomi — nu även <span className="hl">Full Stack Developer</span>{' '}
+            med <span className="hl">React</span>,{' '}
+            <span className="hl">JavaScript</span> och{' '}
+            <span className="hl">Django</span>.
           </p>
 
           <div className="home__cta reveal" style={{ animationDelay: '0.4s' }}>
             <Link to="/projects" className="btn">
               ▸ Explore Missions
+            </Link>
+            <Link to="/cv" className="btn btn--ghost">
+              ▸ View CV
             </Link>
             <Link to="/contact" className="btn btn--ghost">
               ▸ Open Comms
@@ -91,10 +94,10 @@ function Home() {
             <p className="t-out">oscar_backman</p>
             <p><span className="t-dim">$</span> cat ./status.json</p>
             <p className="t-out">{'{'}</p>
-            <p className="t-out">&nbsp;&nbsp;<span className="t-key">"role"</span>: <span className="t-val">"Full Stack Dev"</span>,</p>
-            <p className="t-out">&nbsp;&nbsp;<span className="t-key">"focus"</span>: <span className="t-val">"React / Django"</span>,</p>
+            <p className="t-out">&nbsp;&nbsp;<span className="t-key">"role"</span>: <span className="t-val">"Biz Ops / Dev"</span>,</p>
+            <p className="t-out">&nbsp;&nbsp;<span className="t-key">"focus"</span>: <span className="t-val">"React / ERP / CRM"</span>,</p>
             <p className="t-out">&nbsp;&nbsp;<span className="t-key">"status"</span>: <span className="t-ok">"available"</span>,</p>
-            <p className="t-out">&nbsp;&nbsp;<span className="t-key">"location"</span>: <span className="t-val">"Sweden"</span></p>
+            <p className="t-out">&nbsp;&nbsp;<span className="t-key">"location"</span>: <span className="t-val">"Stockholm"</span></p>
             <p className="t-out">{'}'}</p>
             <p><span className="t-dim">$</span> <span className="home__cursor">_</span></p>
           </div>
@@ -103,10 +106,10 @@ function Home() {
 
       <div className="home__stats section-inner reveal" style={{ animationDelay: '0.5s' }}>
         {[
-          { k: 'STACK', v: 'React · Django' },
+          { k: 'STACK', v: 'React · Visma · CRM' },
           { k: 'CERT', v: 'Full Stack Dev' },
           { k: 'STATUS', v: 'Open to work' },
-          { k: 'BASE', v: 'Sweden 🇸🇪' },
+          { k: 'BASE', v: 'Stockholm 🇸🇪' },
         ].map((s) => (
           <div className="home__stat" key={s.k}>
             <span className="home__stat-k">{s.k}</span>
