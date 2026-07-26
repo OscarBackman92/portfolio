@@ -24,7 +24,7 @@ function getErrorMessage(err) {
 
 function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
-  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [status, setStatus] = useState('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
@@ -62,38 +62,41 @@ function Contact() {
   return (
     <section className="contact section">
       <div className="section-inner contact__inner">
-        <div className="eyebrow reveal">COMMS CHANNEL</div>
-        <h2 className="contact__title display reveal" style={{ animationDelay: '0.1s' }}>
-          Kontakta mig
+        <div className="eyebrow reveal">Kontakt</div>
+        <h2 className="contact__title display reveal" style={{ animationDelay: '0.08s' }}>
+          Låt oss prata
         </h2>
-        <p className="contact__lede reveal" style={{ animationDelay: '0.15s' }}>
-          Har du ett projekt, en möjlighet eller vill bara prata? Skicka ett meddelande
-          så återkommer jag så snart jag kan.
+        <p className="contact__lede reveal" style={{ animationDelay: '0.12s' }}>
+          Har du ett projekt, en möjlighet eller vill bara stämma av? Skicka ett
+          meddelande så återkommer jag så snart jag kan.
         </p>
 
         <form
           onSubmit={handleSubmit}
           className="contact__form panel reveal"
-          style={{ animationDelay: '0.2s' }}
+          style={{ animationDelay: '0.16s' }}
         >
-          <div className="contact__form-head">
-            <span className="hud-label">{'// new_transmission.req'}</span>
-            <span className="dot"></span>
-          </div>
-
           <div className="contact__row">
             <label className="contact__field">
               <span className="contact__label">Namn</span>
               <input
-                type="text" name="name" value={formData.name}
-                onChange={handleChange} required placeholder="Ditt namn"
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                placeholder="Ditt namn"
               />
             </label>
             <label className="contact__field">
               <span className="contact__label">E-post</span>
               <input
-                type="email" name="email" value={formData.email}
-                onChange={handleChange} required placeholder="din@epost.se"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="din@epost.se"
               />
             </label>
           </div>
@@ -101,44 +104,52 @@ function Contact() {
           <label className="contact__field">
             <span className="contact__label">Ämne</span>
             <input
-              type="text" name="subject" value={formData.subject}
-              onChange={handleChange} required placeholder="T.ex. jobbmöjlighet"
+              type="text"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              required
+              placeholder="T.ex. jobbmöjlighet"
             />
           </label>
 
           <label className="contact__field">
             <span className="contact__label">Meddelande</span>
             <textarea
-              name="message" value={formData.message} onChange={handleChange}
-              required rows="5" placeholder="Skriv ditt meddelande…"
-            ></textarea>
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              rows="5"
+              placeholder="Skriv ditt meddelande…"
+            />
           </label>
 
           <button type="submit" className="btn contact__submit" disabled={sending}>
-            {sending ? '▸ Skickar…' : '▸ Skicka meddelande'}
+            {sending ? 'Skickar…' : 'Skicka meddelande'}
           </button>
 
           {status === 'success' && (
             <p className="contact__status contact__status--ok">
-              ● Meddelandet är skickat. Jag återkommer så snart jag kan.
+              Meddelandet är skickat. Jag återkommer så snart jag kan.
             </p>
           )}
           {status === 'error' && (
             <p className="contact__status contact__status--err">
-              ● {errorMessage}
+              {errorMessage}
             </p>
           )}
         </form>
 
-        <div className="contact__direct reveal" style={{ animationDelay: '0.3s' }}>
+        <div className="contact__direct reveal" style={{ animationDelay: '0.24s' }}>
           <a href="tel:+46720101647" className="contact__direct-link">
             072-010 16 47
           </a>
-          <span className="contact__direct-sep"> · </span>
+          <span className="contact__direct-sep">·</span>
           <a href="mailto:jan.oscar.backman@gmail.com" className="contact__direct-link">
             jan.oscar.backman@gmail.com
           </a>
-          <span className="contact__direct-sep"> · </span>
+          <span className="contact__direct-sep">·</span>
           <a href="/cv/oscar-backman-cv.pdf" download className="contact__direct-link">
             Ladda ner CV (PDF)
           </a>

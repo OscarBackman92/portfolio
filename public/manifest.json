@@ -1,6 +1,6 @@
 {
-  "short_name": "Oscar B.",
-  "name": "Oscar Bäckman — Developer Portfolio",
+  "short_name": "Oscar Bäckman",
+  "name": "Oscar Bäckman — Business Operations & Full Stack",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#05070d",
-  "background_color": "#05070d"
+  "theme_color": "#0b1f1c",
+  "background_color": "#e8eeec"
 }

@@ -1,121 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
-const ROLES = [
-  'BUSINESS OPERATIONS',
-  'FULL STACK DEVELOPER',
-  'PROCESS OPTIMIZER',
-  'PROBLEM SOLVER',
-];
-
-function useTypewriter(words, typing = 90, deleting = 45, hold = 1400) {
-  const [text, setText] = useState('');
-  const [i, setI] = useState(0);
-  const [del, setDel] = useState(false);
-
-  useEffect(() => {
-    const word = words[i % words.length];
-    let delay = del ? deleting : typing;
-
-    if (!del && text === word) {
-      delay = hold;
-      const t = setTimeout(() => setDel(true), delay);
-      return () => clearTimeout(t);
-    }
-    if (del && text === '') {
-      setDel(false);
-      setI((v) => v + 1);
-      return;
-    }
-
-    const t = setTimeout(() => {
-      setText((cur) =>
-        del ? word.slice(0, cur.length - 1) : word.slice(0, cur.length + 1)
-      );
-    }, delay);
-    return () => clearTimeout(t);
-  }, [text, del, i, words, typing, deleting, hold]);
-
-  return text;
-}
+const PROFILE_IMG = '/profile.jpg';
+const PROFILE_IMG_FALLBACK =
+  'https://media.licdn.com/dms/image/v2/C4D03AQGsAsu-UNwnyw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1628016204993?e=1745452800&v=beta&t=upYDH3JMlCrZSasqn2Tq84ejb0TOH2g-Xo0TAqMMA7M';
 
 function Home() {
-  const role = useTypewriter(ROLES);
+  const [imgError, setImgError] = useState(false);
+  const [useFallback, setUseFallback] = useState(false);
 
   return (
-    <section className="home section">
-      <div className="section-inner home__grid">
-        {/* Left: identity */}
-        <div className="home__intro">
-          <div className="eyebrow reveal">SYSTEM ONLINE — OPERATOR PROFILE</div>
-
-          <h1 className="home__name display reveal" style={{ animationDelay: '0.1s' }}>
-            OSCAR<br />BÄCKMAN
-          </h1>
-
-          <div className="home__role reveal" style={{ animationDelay: '0.2s' }}>
-            <span className="home__role-prefix">&gt;</span>
-            <span className="home__role-text">{role}</span>
-            <span className="home__cursor">_</span>
-          </div>
-
-          <p className="home__lede reveal" style={{ animationDelay: '0.3s' }}>
-            Strukturerad och lösningsorienterad med erfarenhet av affärssystem
-            och ekonomi — nu även <span className="hl">Full Stack Developer</span>{' '}
-            med <span className="hl">React</span>,{' '}
-            <span className="hl">JavaScript</span> och{' '}
-            <span className="hl">Django</span>.
-          </p>
-
-          <div className="home__cta reveal" style={{ animationDelay: '0.4s' }}>
-            <Link to="/projects" className="btn">
-              ▸ Explore Missions
-            </Link>
-            <Link to="/cv" className="btn btn--ghost">
-              ▸ View CV
-            </Link>
-            <Link to="/contact" className="btn btn--ghost">
-              ▸ Open Comms
-            </Link>
-          </div>
-        </div>
-
-        {/* Right: telemetry terminal */}
-        <div className="home__panel panel reveal" style={{ animationDelay: '0.3s' }}>
-          <div className="home__panel-head">
-            <span className="home__panel-dots">
-              <i></i><i></i><i></i>
-            </span>
-            <span className="home__panel-title">operator.status</span>
-          </div>
-          <div className="home__terminal">
-            <p><span className="t-dim">$</span> whoami</p>
-            <p className="t-out">oscar_backman</p>
-            <p><span className="t-dim">$</span> cat ./status.json</p>
-            <p className="t-out">{'{'}</p>
-            <p className="t-out">&nbsp;&nbsp;<span className="t-key">"role"</span>: <span className="t-val">"Biz Ops / Dev"</span>,</p>
-            <p className="t-out">&nbsp;&nbsp;<span className="t-key">"focus"</span>: <span className="t-val">"React / ERP / CRM"</span>,</p>
-            <p className="t-out">&nbsp;&nbsp;<span className="t-key">"status"</span>: <span className="t-ok">"available"</span>,</p>
-            <p className="t-out">&nbsp;&nbsp;<span className="t-key">"location"</span>: <span className="t-val">"Stockholm"</span></p>
-            <p className="t-out">{'}'}</p>
-            <p><span className="t-dim">$</span> <span className="home__cursor">_</span></p>
-          </div>
-        </div>
+    <section className="home">
+      <div className="home__visual" aria-hidden="true">
+        {!imgError && (
+          <img
+            className="home__portrait"
+            src={useFallback ? PROFILE_IMG_FALLBACK : PROFILE_IMG}
+            alt=""
+            onError={() => {
+              if (!useFallback) setUseFallback(true);
+              else setImgError(true);
+            }}
+          />
+        )}
+        <div className="home__wash" />
       </div>
 
-      <div className="home__stats section-inner reveal" style={{ animationDelay: '0.5s' }}>
-        {[
-          { k: 'STACK', v: 'React · Visma · CRM' },
-          { k: 'CERT', v: 'Full Stack Dev' },
-          { k: 'STATUS', v: 'Open to work' },
-          { k: 'BASE', v: 'Stockholm, Sverige' },
-        ].map((s) => (
-          <div className="home__stat" key={s.k}>
-            <span className="home__stat-k">{s.k}</span>
-            <span className="home__stat-v">{s.v}</span>
-          </div>
-        ))}
+      <div className="home__content section-inner">
+        <p className="home__brand reveal">Oscar Bäckman</p>
+
+        <h1 className="home__headline display reveal" style={{ animationDelay: '0.12s' }}>
+          Affärsoperationer möter full stack-utveckling
+        </h1>
+
+        <p className="home__lede reveal" style={{ animationDelay: '0.22s' }}>
+          Jag bygger struktur i system och processer — från ERP och CRM till
+          moderna webbappar i React och Django.
+        </p>
+
+        <div className="home__cta reveal" style={{ animationDelay: '0.32s' }}>
+          <Link to="/projects" className="btn">
+            Se projekt
+          </Link>
+          <Link to="/contact" className="btn btn--ghost">
+            Kontakta mig
+          </Link>
+        </div>
       </div>
     </section>
   );

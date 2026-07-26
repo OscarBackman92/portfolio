@@ -125,7 +125,7 @@ function CV() {
     <section className="cv section">
       <div className="section-inner cv__inner">
         <div className="cv__header reveal">
-          <div className="eyebrow">PERSONNEL FILE — CV</div>
+          <div className="eyebrow">Curriculum Vitae</div>
           <div className="cv__header-row">
             <div>
               <h1 className="cv__name display">Oscar Bäckman</h1>
@@ -133,15 +133,15 @@ function CV() {
               <p className="cv__location">Stockholm, Sverige</p>
             </div>
             <a href={CV_PDF} download className="btn cv__download">
-              ▸ Ladda ner PDF
+              Ladda ner PDF
             </a>
           </div>
 
           <div className="cv__contacts panel">
             <a href="tel:+46720101647">072-010 16 47</a>
-            <span className="cv__contact-sep">|</span>
+            <span className="cv__contact-sep">·</span>
             <a href="mailto:jan.oscar.backman@gmail.com">jan.oscar.backman@gmail.com</a>
-            <span className="cv__contact-sep">|</span>
+            <span className="cv__contact-sep">·</span>
             <a
               href="https://www.linkedin.com/in/oscar-b%C3%A4ckman-3149b1167/"
               target="_blank"
@@ -149,7 +149,7 @@ function CV() {
             >
               LinkedIn
             </a>
-            <span className="cv__contact-sep">|</span>
+            <span className="cv__contact-sep">·</span>
             <a
               href="https://github.com/OscarBackman92"
               target="_blank"
@@ -161,8 +161,8 @@ function CV() {
         </div>
 
         <div className="cv__body">
-          <article className="cv__block panel reveal" style={{ animationDelay: '0.1s' }}>
-            <span className="hud-label">{'// Profil'}</span>
+          <article className="cv__block panel reveal" style={{ animationDelay: '0.08s' }}>
+            <h2 className="cv__section-title">Profil</h2>
             <p className="cv__text">
               Jag är en snabblärd och strukturerad person som trivs i rollen som spindeln i
               nätet. Jag gillar att samarbeta, lösa problem och förbättra rutiner. Med ett
@@ -173,8 +173,8 @@ function CV() {
             </p>
           </article>
 
-          <article className="cv__block panel reveal" style={{ animationDelay: '0.12s' }}>
-            <span className="hud-label">{'// Egenskaper'}</span>
+          <article className="cv__block panel reveal" style={{ animationDelay: '0.1s' }}>
+            <h2 className="cv__section-title">Egenskaper</h2>
             <div className="cv__skill-tags">
               {TRAITS.map((trait) => (
                 <span className="cv__skill-tag cv__skill-tag--trait" key={trait}>
@@ -184,8 +184,8 @@ function CV() {
             </div>
           </article>
 
-          <article className="cv__block panel reveal" style={{ animationDelay: '0.15s' }}>
-            <span className="hud-label">{'// Arbetslivserfarenhet'}</span>
+          <article className="cv__block panel reveal" style={{ animationDelay: '0.14s' }}>
+            <h2 className="cv__section-title">Arbetslivserfarenhet</h2>
             <ul className="cv__timeline cv__timeline--jobs">
               {EXPERIENCE.map((job) => (
                 <li
@@ -211,8 +211,8 @@ function CV() {
             </ul>
           </article>
 
-          <article className="cv__block panel reveal" style={{ animationDelay: '0.2s' }}>
-            <span className="hud-label">{'// Kompetenser'}</span>
+          <article className="cv__block panel reveal" style={{ animationDelay: '0.18s' }}>
+            <h2 className="cv__section-title">Kompetenser</h2>
             <div className="cv__skills">
               {SKILL_GROUPS.map((group) => (
                 <div className="cv__skill-group" key={group.label}>
@@ -229,8 +229,8 @@ function CV() {
             </div>
           </article>
 
-          <article className="cv__block panel reveal" style={{ animationDelay: '0.25s' }}>
-            <span className="hud-label">{'// Utbildning'}</span>
+          <article className="cv__block panel reveal" style={{ animationDelay: '0.22s' }}>
+            <h2 className="cv__section-title">Utbildning</h2>
             <ul className="cv__timeline">
               {EDUCATION.map((item) => (
                 <li className="cv__timeline-item" key={item.title}>
@@ -245,12 +245,12 @@ function CV() {
             </ul>
           </article>
 
-          <article className="cv__block panel reveal" style={{ animationDelay: '0.3s' }}>
-            <span className="hud-label">{'// Utvecklingsprojekt'}</span>
+          <article className="cv__block panel reveal" style={{ animationDelay: '0.26s' }}>
+            <h2 className="cv__section-title">Utvecklingsprojekt</h2>
             <p className="cv__text">
               Full stack-projekt med React, Django och moderna webbverktyg — se{' '}
               <Link to="/projects" className="cv__inline-link">
-                Mission Log
+                Projekt
               </Link>{' '}
               och{' '}
               <a
@@ -266,12 +266,12 @@ function CV() {
           </article>
         </div>
 
-        <div className="cv__footer reveal" style={{ animationDelay: '0.35s' }}>
+        <div className="cv__footer reveal" style={{ animationDelay: '0.3s' }}>
           <a href={CV_PDF} download className="btn btn--ghost">
-            ▸ Ladda ner PDF
+            Ladda ner PDF
           </a>
           <Link to="/contact" className="btn">
-            ▸ Kontakta mig
+            Kontakta mig
           </Link>
         </div>
       </div>

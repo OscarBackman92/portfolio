@@ -3,50 +3,40 @@ import { NavLink, Link } from 'react-router-dom';
 import './Navbar.css';
 
 const links = [
-  { to: '/', label: 'Home', code: '01' },
-  { to: '/about', label: 'About', code: '02' },
-  { to: '/projects', label: 'Projects', code: '03' },
-  { to: '/cv', label: 'CV', code: '04' },
-  { to: '/contact', label: 'Contact', code: '05' },
+  { to: '/', label: 'Hem' },
+  { to: '/about', label: 'Om mig' },
+  { to: '/projects', label: 'Projekt' },
+  { to: '/cv', label: 'CV' },
+  { to: '/contact', label: 'Kontakt' },
 ];
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [clock, setClock] = useState('');
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const tick = () => {
-      const now = new Date();
-      const t = now.toLocaleTimeString('en-GB', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        timeZone: 'UTC',
-      });
-      setClock(`${t} UTC`);
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar${scrolled ? ' is-scrolled' : ''}`}>
       <div className="navbar__inner">
         <Link to="/" className="navbar__brand" onClick={closeMenu}>
-          <span className="navbar__brand-mark">◆</span>
+          <span className="navbar__brand-mark" aria-hidden="true" />
           <span className="navbar__brand-text">
-            OSCAR<span className="navbar__brand-dot">.</span>B
-            <span className="navbar__brand-sub">{'// DEV TERMINAL'}</span>
+            Oscar<span className="navbar__brand-dot">.</span>Bäckman
           </span>
         </Link>
 
         <button
           className={`navbar__burger ${isOpen ? 'is-open' : ''}`}
           onClick={() => setIsOpen((v) => !v)}
-          aria-label="Toggle navigation"
+          aria-label="Öppna meny"
           aria-expanded={isOpen}
         >
           <span></span>
@@ -65,15 +55,12 @@ function Navbar() {
                 `navbar__link ${isActive ? 'is-active' : ''}`
               }
             >
-              <span className="navbar__link-code">{l.code}</span>
               {l.label}
             </NavLink>
           ))}
-        </div>
-
-        <div className="navbar__status">
-          <span className="dot"></span>
-          <span className="navbar__clock">{clock}</span>
+          <Link to="/contact" className="navbar__cta" onClick={closeMenu}>
+            Hör av dig
+          </Link>
         </div>
       </div>
     </nav>
