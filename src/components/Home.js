@@ -3,32 +3,36 @@ import { Link } from 'react-router-dom';
 import './Home.css';
 
 const PROFILE_IMG = '/profile.jpg';
-const PROFILE_IMG_FALLBACK =
-  'https://media.licdn.com/dms/image/v2/C4D03AQGsAsu-UNwnyw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1628016204993?e=1745452800&v=beta&t=upYDH3JMlCrZSasqn2Tq84ejb0TOH2g-Xo0TAqMMA7M';
 
 function Home() {
   const [imgError, setImgError] = useState(false);
-  const [useFallback, setUseFallback] = useState(false);
 
   return (
     <section className="home">
       <div className="home__visual" aria-hidden="true">
-        {!imgError && (
-          <img
-            className="home__portrait"
-            src={useFallback ? PROFILE_IMG_FALLBACK : PROFILE_IMG}
-            alt=""
-            onError={() => {
-              if (!useFallback) setUseFallback(true);
-              else setImgError(true);
-            }}
-          />
-        )}
+        {!imgError && <img className="home__ambient" src={PROFILE_IMG} alt="" />}
         <div className="home__wash" />
       </div>
 
       <div className="home__content section-inner">
-        <p className="home__brand reveal">Oscar Bäckman</p>
+        <div className="home__intro reveal">
+          <div className="home__avatar">
+            {imgError ? (
+              <span className="home__monogram">OB</span>
+            ) : (
+              <img
+                src={PROFILE_IMG}
+                alt="Oscar Bäckman"
+                onError={() => setImgError(true)}
+              />
+            )}
+          </div>
+
+          <div className="home__identity">
+            <p className="home__role">Business Operations Coordinator · Stockholm</p>
+            <p className="home__brand">Oscar Bäckman</p>
+          </div>
+        </div>
 
         <h1 className="home__headline display reveal" style={{ animationDelay: '0.12s' }}>
           Ekonomi, administration och systemflöden
