@@ -125,21 +125,21 @@ function GitHubRepos() {
   return (
     <section className="repos section">
       <div className="section-inner">
-        <div className="eyebrow reveal">Projekt</div>
+        <div className="eyebrow reveal">På sidan om</div>
         <h2 className="repos__title display reveal" style={{ animationDelay: '0.08s' }}>
-          Utvalda arbeten från GitHub
+          Kodning som hobby
         </h2>
         <p className="repos__lede reveal" style={{ animationDelay: '0.12s' }}>
-          Hämtas live från{' '}
+          Ett intresse vid sidan av jobbet — inte en yrkesroll. Här är
+          hobbyprojekt från{' '}
           <a
             href={`https://github.com/${GITHUB_USER}`}
             target="_blank"
             rel="noopener noreferrer"
             className="repos__user"
           >
-            github.com/{GITHUB_USER}
-          </a>
-          .
+            GitHub
+          </a>, bland annat från en kurs 2024.
         </p>
 
         {status === 'ready' && (

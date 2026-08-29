@@ -41,8 +41,8 @@ function Home() {
         </p>
 
         <div className="home__cta reveal" style={{ animationDelay: '0.32s' }}>
-          <Link to="/projects" className="btn">
-            Se projekt
+          <Link to="/cv" className="btn">
+            Visa CV
           </Link>
           <Link to="/contact" className="btn btn--ghost">
             Kontakta mig

@@ -5,9 +5,8 @@ import './AboutMe.css';
 const CV_PDF = '/cv/oscar-backman-cv.pdf';
 
 const SKILLS = [
-  'SuperOffice CRM', 'Visma Business', 'Evatic', 'Wint', 'Nettailer',
-  'React', 'Django', 'JavaScript', 'Python',
-  'SharePoint', 'Power BI', 'GitHub', 'VS Code',
+  'SuperOffice CRM', 'Upsales', 'Visma Business', 'Evatic', 'Wint', 'Nettailer',
+  'SharePoint', 'Microsoft Office', 'Power BI',
 ];
 
 const PROFILE_IMG = '/profile.jpg';
@@ -80,10 +79,11 @@ function AboutMe() {
               <span className="hl">systemflöden</span> i IT- och servicebolag.
               Jag trivs i den koordinerande rollen där processer, avtal och
               integrationer ska hänga ihop, och arbetar nära ekonomi, försäljning
-              och support. Med diplom i{' '}
-              <span className="hl">Full Stack Development</span> från 2024 bygger
-              jag vidare med <span className="hl">React</span>,{' '}
-              <span className="hl">Django</span> och moderna verktyg.
+              och support.
+            </p>
+            <p className="about__hobby reveal" style={{ animationDelay: '0.18s' }}>
+              Kodning är något jag gör på sidan om jobbet, för att det är kul —
+              inte något jag arbetat med.
             </p>
 
             <div className="about__blocks">
@@ -99,7 +99,6 @@ function AboutMe() {
               <div className="about__block panel reveal" style={{ animationDelay: '0.26s' }}>
                 <h3 className="about__block-title">Certifieringar</h3>
                 <ul className="about__list">
-                  <li>Full Stack Development — Code Institute (2024)</li>
                   <li>Certifierad Ekonomiassistent — Påhlmans Handelsinstitut</li>
                   <li>MS Teams & SharePoint — Informator</li>
                 </ul>
@@ -118,18 +117,22 @@ function AboutMe() {
         </div>
 
         <div className="about__diploma panel reveal" style={{ animationDelay: '0.36s' }}>
-          <h3 className="about__block-title">Diplom</h3>
+          <h3 className="about__block-title">På sidan om</h3>
+          <p className="about__diploma-note">
+            2024 läste jag Full Stack Development hos Code Institute av nyfikenhet.
+            Det är ett sidospår, inte en yrkesroll.{' '}
+            <Link to="/projects" className="about__diploma-link">
+              Några hobbyprojekt →
+            </Link>
+          </p>
           {diplomaError ? (
             <div className="about__diploma-fallback">
-              <p>Full Stack Developer Diploma — Code Institute</p>
-              <Link to="/cv" className="about__diploma-link">
-                Se mer under CV →
-              </Link>
+              <p>Diplom — Code Institute, 2024</p>
             </div>
           ) : (
             <img
               src="/diploma.png"
-              alt="Oscar Bäckmans Full Stack Developer-diplom"
+              alt="Diplom i Full Stack Development från Code Institute, ett sidospår vid sidan av jobbet"
               loading="lazy"
               onError={() => setDiplomaError(true)}
             />

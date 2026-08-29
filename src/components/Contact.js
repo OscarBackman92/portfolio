@@ -67,8 +67,8 @@ function Contact() {
           Låt oss prata
         </h2>
         <p className="contact__lede reveal" style={{ animationDelay: '0.12s' }}>
-          Har du ett projekt, en möjlighet eller vill bara stämma av? Skicka ett
-          meddelande så återkommer jag så snart jag kan.
+          Har du en möjlighet eller vill bara stämma av? Skicka ett meddelande
+          så återkommer jag så snart jag kan.
         </p>
 
         <form

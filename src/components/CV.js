@@ -17,6 +17,7 @@ const SKILL_GROUPS = [
     label: 'Affärssystem & verktyg',
     items: [
       'SuperOffice CRM',
+      'Upsales',
       'Visma Business ERP',
       'Evatic',
       'Wint',
@@ -27,8 +28,8 @@ const SKILL_GROUPS = [
     ],
   },
   {
-    label: 'Utveckling & teknik',
-    items: ['VS Code', 'GitHub', 'React', 'Django', 'Claude (AI)'],
+    label: 'Teknik',
+    items: ['VS Code', 'GitHub', 'Claude (AI)'],
   },
   {
     label: 'Övrigt',
@@ -91,7 +92,7 @@ const EDUCATION = [
     org: 'Code Institute',
     period: '2024',
     detail:
-      'Diplom i Full Stack Software Development med fokus på avancerad frontend. Praktisk erfarenhet av React, Node.js och Django. Betyg: Pass.',
+      'Diplom i Full Stack Software Development med fokus på frontend. Ett sidospår av intresse — inte yrkeserfarenhet. Betyg: Pass.',
   },
   {
     title: 'MS Teams & SharePoint för administratörer',
@@ -244,13 +245,14 @@ function CV() {
           </article>
 
           <article className="cv__block panel reveal" style={{ animationDelay: '0.26s' }}>
-            <h2 className="cv__section-title">Utvecklingsprojekt</h2>
+            <h2 className="cv__section-title">På sidan om</h2>
             <p className="cv__text">
-              Full stack-projekt med React, Django och moderna webbverktyg — se{' '}
+              Kodning är ett intresse vid sidan av jobbet, inte något jag arbetat med.
+              Några hobbyprojekt finns under{' '}
               <Link to="/projects" className="cv__inline-link">
                 Projekt
               </Link>{' '}
-              och{' '}
+              och på{' '}
               <a
                 href="https://github.com/OscarBackman92"
                 target="_blank"
@@ -258,8 +260,7 @@ function CV() {
                 className="cv__inline-link"
               >
                 GitHub
-              </a>
-              .
+              </a>.
             </p>
           </article>
         </div>

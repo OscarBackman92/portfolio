@@ -2,7 +2,7 @@
   font-size: clamp(2rem, 4.5vw, 3rem);
   margin-bottom: 0.75rem;
   color: var(--ink);
-  max-width: 18ch;
+  max-width: 16ch;
 }
 .repos__lede {
   color: var(--text-dim);
