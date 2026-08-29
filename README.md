@@ -1,106 +1,120 @@
-# ◆ OSCAR.B // DEV TERMINAL
+# Oscar Bäckman — Portfolio
 
-A futuristic, **command-center style** developer portfolio for Oscar Bäckman.
-Dark HUD aesthetic, glowing grid background, terminal panels and a live
-**Mission Log** that pulls projects straight from the GitHub API.
+Professionell portfolio för Oscar Bäckman: Business Operations och Full Stack-utveckling.
+Nordisk editorial-design med tydlig varumärkessignal, svenska texter och live-projekt från GitHub.
 
-🛠 **Built with:** React 19 · React Router 7 · EmailJS · a hand-written CSS design system (no UI framework)
-
----
-
-## ⭐ Features
-
-- **Command-center UI** — animated grid backdrop, glassmorphism panels with corner
-  brackets, neon-cyan accents and a live UTC clock in the nav.
-- **Live GitHub feed** — the Projects page fetches repos from the GitHub API,
-  filters out forks/archived repos, sorts by stars, and offers a language filter.
-  Includes loading skeletons, an empty state and graceful error/rate-limit handling.
-- **Typewriter hero** — the home page cycles through roles in a terminal readout.
-- **Operator dossier** — the About page styles bio, skills, certs and the diploma
-  as an ID card (with a monogram fallback if the profile photo fails to load).
-- **Comms channel** — the Contact form sends email through EmailJS with clear
-  sending / success / error states.
-- **Fully responsive** and respects `prefers-reduced-motion`.
+**Byggd med:** React 19 · React Router 7 · EmailJS · egen CSS-designsystem (inget UI-ramverk)
 
 ---
 
-## 🧱 Tech stack
+## Funktioner
 
-| Layer        | Tech                                              |
-| ------------ | ------------------------------------------------- |
-| Framework    | React 19 (Create React App / `react-scripts` 5)   |
-| Routing      | React Router 7 (`BrowserRouter`)                  |
-| Styling      | Custom CSS design system + CSS variables          |
-| Fonts        | Orbitron · Rajdhani · Share Tech Mono (Google)    |
-| Data         | GitHub REST API (public, unauthenticated)         |
-| Email        | EmailJS                                            |
-| Prod server  | Express (`server.js`) — serves the static build   |
-
-> There is **no Tailwind / Framer Motion** — everything is custom CSS in
-> `src/index.css` (design tokens + primitives) and per-component `.css` files.
+- **Professionell startsida** — full-bleed hero med namnet som huvudsignal, en rubrik, kort ingress och tydliga CTA:er
+- **Live GitHub-projekt** — hämtar repos via GitHub API, filtrerar bort forks/arkiverade, sorterar efter stjärnor och erbjuder språkfilter, loading-skeletons och felhantering
+- **Om-sida** — profil, kompetenser, certifieringar, utbildning och diplom (med fallback om bild saknas)
+- **CV** — strukturerad erfarenhet, kompetenser och utbildning, med PDF-nedladdning
+- **Kontaktformulär** — skickar via EmailJS med tydliga statuslägen (skickar / lyckades / fel)
+- **Responsiv** och respekterar `prefers-reduced-motion`
 
 ---
 
-## 🛠 Local development
+## Design
+
+| Token / lager | Val |
+| ------------- | --- |
+| Stilriktning | Nordisk editorial — bläckgrönt, soft mint, lugn typografi |
+| Display | Fraunces |
+| Brödtext | Outfit |
+| Mono | IBM Plex Mono |
+| Tokens | CSS-variabler i `src/index.css` |
+| Komponentstil | Egna `.css`-filer per komponent |
+
+Ingen Tailwind eller Framer Motion — designsystemet ligger i `src/index.css` (tokens + primitives) och i respektive komponent-CSS.
+
+---
+
+## Sidor
+
+| Route | Innehåll |
+| ----- | -------- |
+| `/` | Hero / startsida |
+| `/about` | Om mig |
+| `/projects` | GitHub-projekt |
+| `/cv` | Curriculum Vitae + PDF |
+| `/contact` | Kontaktformulär |
+| `*` | 404 |
+
+---
+
+## Tech stack
+
+| Lager | Teknik |
+| ----- | ------ |
+| Framework | React 19 (Create React App / `react-scripts` 5) |
+| Routing | React Router 7 (`BrowserRouter`) |
+| Styling | Custom CSS + CSS-variabler |
+| Data | GitHub REST API (publik, utan autentisering) |
+| E-post | EmailJS |
+| Prod-server | Express (`server.js`) — serverar den statiska builden |
+
+---
+
+## Lokal utveckling
 
 ```sh
 npm install
-npm run dev        # React dev server with hot reload → http://localhost:3000
+npm run dev        # utvecklingsserver → http://localhost:3000
 ```
 
-Other scripts:
+Övriga script:
 
 ```sh
-npm run build      # production build into /build
-npm test           # run the test suite
-npm start          # serve the production build via Express (used by Heroku)
+npm run build      # produktionsbuild till /build
+npm test           # tester
+npm start          # servera build via Express (t.ex. Heroku)
 ```
 
-Edit your GitHub username in `src/components/GithubRepos.js`
-(`GITHUB_USER`) and your EmailJS IDs in `src/components/Contact.js`.
+Konfiguration:
+
+- GitHub-användare: `GITHUB_USER` i `src/components/GithubRepos.js`
+- EmailJS: service-, template- och public key i `src/components/Contact.js`
+- Profilbild (valfritt): `public/profile.jpg`
+- CV-PDF: `public/cv/oscar-backman-cv.pdf`
 
 ---
 
-## 🚀 Deployment — where to host it
+## Deployment
 
-This is a **static single-page app** (it only talks to the GitHub API from the
-browser), so a static host is the simplest and cheapest option.
+Appen är en **statisk SPA** (GitHub API anropas från webbläsaren). Statisk hosting är enklast.
 
-### ✅ Recommended: Netlify or Vercel (free, zero config)
+### Rekommenderat: Vercel eller Netlify
 
-1. Push this repo to GitHub.
-2. Import the repo on [Netlify](https://netlify.com) or [Vercel](https://vercel.com).
-3. Settings (usually auto-detected):
+1. Pusha repot till GitHub.
+2. Importera projektet på [Vercel](https://vercel.com) eller [Netlify](https://netlify.com).
+3. Inställningar (ofta auto-detekterade):
    - **Build command:** `npm run build`
-   - **Publish / output directory:** `build`
-4. Deploy. SPA routing already works — `public/_redirects` (Netlify) and
-   `vercel.json` (Vercel) rewrite every path to `index.html`, so deep links like
-   `/projects` won't 404.
+   - **Output / publish directory:** `build`
+4. SPA-routing är redan konfigurerad via `vercel.json` och `public/_redirects`, så djuplänkar som `/projects` fungerar.
 
-### Heroku (already configured)
+### Heroku
 
-`Procfile`, `server.js` and the `heroku-postbuild` script are set up:
+`Procfile`, `server.js` och `heroku-postbuild` finns på plats:
 
 ```sh
 heroku create my-portfolio
 git push heroku main
 ```
 
-Express serves `/build` with an SPA fallback. Works, but Heroku has no free tier
-and running a Node server just to serve static files is overkill — prefer
-Netlify/Vercel.
+Express serverar `/build` med SPA-fallback. Fungerar, men en Node-server bara för statiska filer är onödigt tungt — föredra Vercel/Netlify.
 
-### GitHub Pages — possible, with a caveat
+### GitHub Pages
 
-A `gh-pages` script exists, **but** GitHub Pages has no SPA fallback, so direct
-hits / refreshes on `/about`, `/projects`, `/contact` return 404 with
-`BrowserRouter`. To use Pages, either switch to `HashRouter` in `src/index.js`
-or add a `404.html` redirect hack. Netlify/Vercel avoid this entirely.
+Scriptet `gh-pages` finns, men GitHub Pages saknar SPA-fallback. Direkta träffar på `/about`, `/projects` m.fl. ger 404 med `BrowserRouter`. Byt till `HashRouter` i `src/index.js`, eller använd Vercel/Netlify.
 
 ---
 
-## 📬 Contact
+## Kontakt
 
-- 🐙 GitHub: [OscarBackman92](https://github.com/OscarBackman92)
-- 💼 LinkedIn: [Oscar Bäckman](https://www.linkedin.com/in/oscar-b%C3%A4ckman-3149b1167/)
-- 📧 Email: jan.oscar.backman@gmail.com
+- GitHub: [OscarBackman92](https://github.com/OscarBackman92)
+- LinkedIn: [Oscar Bäckman](https://www.linkedin.com/in/oscar-b%C3%A4ckman-3149b1167/)
+- E-post: jan.oscar.backman@gmail.com

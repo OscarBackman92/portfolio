@@ -18,6 +18,7 @@ const SKILL_GROUPS = [
     items: [
       'SuperOffice CRM',
       'Visma Business ERP',
+      'Evatic',
       'Wint',
       'Nettailer / Netset',
       'SharePoint',
@@ -37,39 +38,37 @@ const SKILL_GROUPS = [
 
 const EXPERIENCE = [
   {
-    role: 'Orderadministratör',
-    company: 'AVOKI Group AB',
-    period: 'Feb 2026 – pågående',
-    current: true,
-    bullets: [
-      'Hanterar försäljningsorder inom IT, AV och dokumenthantering i SuperOffice och Visma Business.',
-      'Bidrar aktivt i förbättringsprocesser för produkter och artikelregister.',
-      'Deltar i implementeringen av e-handelsplattformen Nettailer med fokus på effektivare sälj- och inköpsflöden.',
-      'Ansvarar för administration av artikelregister, produktpaket och bidhantering i Nettailer.',
-      'Hanterar intern handel av telefoner och IT-utrustning, inklusive sortiment och kontakt med tillverkare.',
-      'Stöttar kollegor med support och testning vid utveckling och uppdateringar av plattformen.',
-      'Utför lagerjusteringar och deltar vid inventeringar.',
-    ],
-  },
-  {
     role: 'Business Operations Coordinator',
     company: 'ADNS House of Service AB',
-    period: 'Nov 2018 – Okt 2025',
+    period: 'Feb 2026 – Jul 2026',
     summary:
       'Central roll med ansvar för ekonomi, administration och uppföljning för House of Service IT och FM, med fokus på effektiva och skalbara processer i ett växande bolag.',
     bullets: [
-      'Operativt ansvar för kund- och leverantörsfakturor – kontering, matchning och attest – samt fakturering av avtal och avstämning vid licensförändringar.',
-      'Arbetar proaktivt med fakturering, attestering och egenkontroller inför månads-, kvartals- och årsbokslut och säkerställer korrekt rapportering till koncernen (Nestit Group).',
-      'Huvudkontakt mot extern ekonomipartner (Wint) gällande bokföring, löner och ekonomisystem.',
-      'Ansvarar för och vidareutvecklar integrationer mellan affärssystem, webshop och fakturering.',
-      'Agerar koordinator och projektledare gentemot försäljning, operations, support och externa parter.',
-      'Utvecklar interna kontroller, processer och attestflöden samt säkerställer regelefterlevnad (skatt, moms, redovisning).',
-      'Kontorsansvar för kontinuerlig drift.',
+      'Operativt ansvar för kund- och leverantörsfakturor samt fakturering av avtal och avstämning vid licensförändringar.',
+      'Arbetade proaktivt med fakturering, attestering och egenkontroller inför månads-, kvartals- och årsbokslut och säkerställde korrekt rapportering till koncernen (Nestit Group).',
+      'Huvudkontakt mot extern ekonomipartner (Wint) gällande bokföring, löner och ekonomisystem, och säkerställde kvalitet och korrekthet i den ekonomiska leveransen.',
+      'Ansvarade för och vidareutvecklade integrationer mellan affärssystem, webshop och fakturering så att både automatiserade och manuella flöden fungerade korrekt.',
+      'Agerade koordinator och projektledare gentemot försäljning, operations, support och externa parter, och drev projekt, avtal och initiativ från start till mål.',
+      'Utvecklade interna kontroller, processer och attestflöden, säkerställde regelefterlevnad (skatt, moms, redovisning) och hade kontorsansvar för kontinuerlig drift.',
+    ],
+  },
+  {
+    role: 'Orderadministratör',
+    company: 'AVOKI Group AB',
+    period: 'Nov 2018 – Okt 2025',
+    bullets: [
+      'Hanterade försäljningsorder inom IT, AV och dokumenthantering i CRM-systemet SuperOffice och ERP-systemet Visma Business.',
+      'Bidrog aktivt i förbättringsprocesser för produkter och artikelregister.',
+      'Deltog i implementeringen av e-handelsplattformen Nettailer, med fokus på att effektivisera sälj- och inköpsflöden.',
+      'Ansvarade för administration av artikelregister, produktpaket och bidhantering i Nettailer.',
+      'Hanterade den interna handeln av telefoner och IT-utrustning, inklusive framtagning av sortiment och kontakt med tillverkare för bidpriser.',
+      'Stöttade kollegor med support och testning i samband med utveckling och uppdateringar av plattformen.',
+      'Utförde lagerjusteringar och deltog vid inventeringar.',
     ],
   },
   {
     role: 'Ekonomiassistent',
-    company: 'AVOKI Group AB',
+    company: 'AVOKI',
     period: 'Sep 2017 – Nov 2018',
     bullets: [
       'Hanterade fakturering och kreditering i Visma Business.',
@@ -164,12 +163,11 @@ function CV() {
           <article className="cv__block panel reveal" style={{ animationDelay: '0.08s' }}>
             <h2 className="cv__section-title">Profil</h2>
             <p className="cv__text">
-              Jag är en snabblärd och strukturerad person som trivs i rollen som spindeln i
-              nätet. Jag gillar att samarbeta, lösa problem och förbättra rutiner. Med ett
-              genuint intresse för teknik och system sätter jag mig snabbt in i nya
-              arbetssätt och bidrar gärna till att skapa effektiva och användarvänliga
-              lösningar. Jag uppskattar att arbeta med människor och motiveras av att se
-              hur samarbete leder till utveckling.
+              Jag har flera års erfarenhet av ekonomi, administration och systemflöden i
+              växande IT- och servicebolag. Jag trivs i den koordinerande rollen där
+              processer, avtal och integrationer ska hänga ihop, och arbetar nära ekonomi,
+              försäljning och support. Jag bygger gärna om manuella rutiner till
+              automatiserade flöden och sätter mig snabbt in i nya system.
             </p>
           </article>
 

@@ -31,12 +31,13 @@ function Home() {
         <p className="home__brand reveal">Oscar Bäckman</p>
 
         <h1 className="home__headline display reveal" style={{ animationDelay: '0.12s' }}>
-          Affärsoperationer möter full stack-utveckling
+          Ekonomi, administration och systemflöden
         </h1>
 
         <p className="home__lede reveal" style={{ animationDelay: '0.22s' }}>
-          Jag bygger struktur i system och processer — från ERP och CRM till
-          moderna webbappar i React och Django.
+          Jag trivs i den koordinerande rollen där processer, avtal och
+          integrationer ska hänga ihop. Jag arbetar nära ekonomi, försäljning
+          och support, och bygger gärna om manuella rutiner till enklare flöden.
         </p>
 
         <div className="home__cta reveal" style={{ animationDelay: '0.32s' }}>

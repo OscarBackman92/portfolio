@@ -66,7 +66,7 @@
 .home__headline {
   font-size: clamp(1.35rem, 3.2vw, 2rem);
   font-weight: 500;
-  max-width: 18ch;
+  max-width: 20ch;
   line-height: 1.25;
   margin-bottom: 1.1rem;
   color: rgba(244, 247, 245, 0.92);
@@ -76,7 +76,7 @@
   font-size: 1.08rem;
   line-height: 1.7;
   color: rgba(232, 238, 236, 0.78);
-  max-width: 36ch;
+  max-width: 48ch;
   margin-bottom: 2rem;
   font-weight: 300;
 }

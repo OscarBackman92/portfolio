@@ -5,7 +5,7 @@ import './AboutMe.css';
 const CV_PDF = '/cv/oscar-backman-cv.pdf';
 
 const SKILLS = [
-  'SuperOffice CRM', 'Visma Business', 'Wint', 'Nettailer',
+  'SuperOffice CRM', 'Visma Business', 'Evatic', 'Wint', 'Nettailer',
   'React', 'Django', 'JavaScript', 'Python',
   'SharePoint', 'Power BI', 'GitHub', 'VS Code',
 ];
@@ -24,7 +24,7 @@ function AboutMe() {
       <div className="section-inner">
         <div className="eyebrow reveal">Om mig</div>
         <h2 className="about__title display reveal" style={{ animationDelay: '0.08s' }}>
-          Struktur, system och lösningsfokus
+          Koordinerar processer, avtal och system
         </h2>
 
         <div className="about__grid">
@@ -45,7 +45,7 @@ function AboutMe() {
               )}
             </div>
             <h3 className="about__name">Oscar Bäckman</h3>
-            <p className="about__role">Business Operations · Full Stack</p>
+            <p className="about__role">Business Operations Coordinator</p>
 
             <dl className="about__meta">
               <div>
@@ -76,12 +76,13 @@ function AboutMe() {
 
           <div className="about__body">
             <p className="about__bio reveal" style={{ animationDelay: '0.16s' }}>
-              Jag är strukturerad och lösningsorienterad med lång erfarenhet av{' '}
-              <span className="hl">affärssystem</span>, ekonomi och processutveckling.
-              Efter flera år som Business Operations Coordinator kombinerar jag
-              operativt driv med ett genuint intresse för teknik. Med diplom i{' '}
-              <span className="hl">Full Stack Development</span> bygger jag vidare
-              med <span className="hl">React</span>,{' '}
+              Jag har flera års erfarenhet av ekonomi, administration och{' '}
+              <span className="hl">systemflöden</span> i IT- och servicebolag.
+              Jag trivs i den koordinerande rollen där processer, avtal och
+              integrationer ska hänga ihop, och arbetar nära ekonomi, försäljning
+              och support. Med diplom i{' '}
+              <span className="hl">Full Stack Development</span> från 2024 bygger
+              jag vidare med <span className="hl">React</span>,{' '}
               <span className="hl">Django</span> och moderna verktyg.
             </p>
 

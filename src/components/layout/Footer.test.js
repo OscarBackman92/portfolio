@@ -15,7 +15,7 @@ jest.mock(
 
 test('renders brand and social links', () => {
   render(<Footer />);
-  expect(screen.getByText('Business Operations · Full Stack')).toBeInTheDocument();
+  expect(screen.getByText('Business Operations Coordinator')).toBeInTheDocument();
   expect(screen.getByRole('link', { name: /GitHub/i })).toBeInTheDocument();
   expect(screen.getByRole('link', { name: /LinkedIn/i })).toBeInTheDocument();
 });

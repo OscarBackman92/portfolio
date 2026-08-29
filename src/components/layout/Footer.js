@@ -10,7 +10,7 @@ function Footer() {
       <div className="footer__inner">
         <div className="footer__brand">
           <span className="footer__name">Oscar Bäckman</span>
-          <span className="footer__role">Business Operations · Full Stack</span>
+          <span className="footer__role">Business Operations Coordinator</span>
         </div>
 
         <div className="footer__links">
