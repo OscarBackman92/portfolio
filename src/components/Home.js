@@ -57,18 +57,12 @@ function Home() {
         </h1>
 
         <p className="home__lede reveal" style={{ animationDelay: '0.22s' }}>
-          {PROFILE_SUMMARY} Senast på House of Service, där jag ägde kund- och
-          leverantörsfakturaflödet, var huvudkontakt mot vår ekonomipartner och
-          byggde vidare på integrationerna mellan affärssystem, webshop och
-          fakturering.
+          {PROFILE_SUMMARY} Jag har ägt kund- och leverantörsfakturaflöden, varit
+          huvudkontakt mot ekonomipartner och byggt vidare på integrationerna
+          mellan affärssystem, webshop och fakturering.
         </p>
 
-        <p className="home__lede home__lede--short reveal" style={{ animationDelay: '0.27s' }}>
-          När ett flöde görs manuellt tre gånger brukar jag automatisera det
-          fjärde.
-        </p>
-
-        <div className="home__cta reveal" style={{ animationDelay: '0.32s' }}>
+        <div className="home__cta reveal" style={{ animationDelay: '0.27s' }}>
           <Link to="/about" className="btn btn--ghost">
             Om mig
           </Link>
