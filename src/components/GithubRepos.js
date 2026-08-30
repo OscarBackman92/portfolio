@@ -10,8 +10,21 @@ const API_URL = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&
 const CACHE_KEY = 'gh:repos:v1';
 const CACHE_TTL = 6 * 60 * 60 * 1000;
 
-/** Repot för den här sajten — dess Live-länk pekar på sidan man redan står på */
-const EXCLUDED_REPOS = new Set(['portfolio']);
+/** Repot för den här sajten, plus kursarbeten och tomma testrepon som inte ska listas */
+const EXCLUDED_REPOS = new Set([
+  'portfolio',
+  'test-django',
+  'java',
+  'demo-backend',
+  'budget_frontend',
+  'budget-tracker-django',
+  'fitnesspp5api',
+  'FitPro',
+  'CI-PP2-OScar-B-ckman',
+  'Project-1-Oscar-B-ckmanv2',
+  'Battleship_PP3_CI',
+  'WafflerestPP4oscar',
+]);
 
 /** Kända döda värdar (t.ex. Herokus avslutade gratisnivå) */
 const DEAD_HOMEPAGE_HOSTS = new Set([
@@ -223,7 +236,7 @@ function GitHubRepos() {
     <section className="repos section">
       <Seo
         title="Projekt — Oscar Bäckman"
-        description="Verktyg och projekt jag byggt, från Textverket till kursarbeten i Python och JavaScript."
+        description="Verktyg jag byggt och underhåller: Textverket, Jobbdjungeln och en sajt för en båtmekaniker."
         path="/projects"
       />
       <div className="section-inner">
@@ -232,9 +245,8 @@ function GitHubRepos() {
           Saker jag byggt
         </h1>
         <p className="repos__lede reveal" style={{ animationDelay: '0.12s' }}>
-          Jag löser mina egna arbetsproblem med kod. Överst ligger det jag
-          använder på riktigt; längst ner kursarbeten från min fullstackutbildning
-          2024, som får ligga kvar för att visa var det började.
+          Jag löser mina egna arbetsproblem med kod. Här ligger det jag faktiskt
+          använder och underhåller — inte allt jag någonsin har byggt.
         </p>
 
         <FeaturedProject />
