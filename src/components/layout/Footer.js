@@ -2,6 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
 
+const NAV = [
+  { to: '/', label: 'Hem' },
+  { to: '/about', label: 'Om mig' },
+  { to: '/projects', label: 'Projekt' },
+  { to: '/cv', label: 'CV' },
+  { to: '/contact', label: 'Kontakt' },
+];
+
 function Footer() {
   const year = new Date().getFullYear();
 
@@ -9,9 +17,19 @@ function Footer() {
     <footer className="footer">
       <div className="footer__inner">
         <div className="footer__brand">
-          <span className="footer__name">Oscar Bäckman</span>
-          <span className="footer__role">Business Operations Coordinator</span>
+          <Link to="/" className="footer__name">
+            Oscar Bäckman
+          </Link>
+          <span className="footer__role">Business Operations Coordinator · Stockholm</span>
         </div>
+
+        <nav className="footer__nav" aria-label="Sidfotsnavigation">
+          {NAV.map((item) => (
+            <Link key={item.to} to={item.to} className="footer__link">
+              {item.label}
+            </Link>
+          ))}
+        </nav>
 
         <div className="footer__links">
           <a href="https://github.com/OscarBackman92" target="_blank" rel="noopener noreferrer" className="footer__link">
@@ -20,9 +38,6 @@ function Footer() {
           <a href="https://www.linkedin.com/in/oscar-b%C3%A4ckman-3149b1167/" target="_blank" rel="noopener noreferrer" className="footer__link">
             LinkedIn
           </a>
-          <Link to="/cv" className="footer__link">
-            CV
-          </Link>
           <a href="mailto:jan.oscar.backman@gmail.com" className="footer__link">
             E-post
           </a>

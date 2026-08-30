@@ -38,14 +38,13 @@ function AboutMe() {
               {imgError ? (
                 <span className="about__monogram">OB</span>
               ) : (
-                // TODO: ersätt public/profile.jpg med en 400x400-version
                 <img
                   src={useFallback ? PROFILE_IMG_FALLBACK : PROFILE_IMG}
-                  alt="Oscar Bäckman"
+                  alt="Oscar Bäckman, Business Operations Coordinator i Stockholm"
                   width={148}
                   height={148}
                   loading="eager"
-                  fetchpriority="high"
+                  fetchPriority="high"
                   onError={() => {
                     if (!useFallback) setUseFallback(true);
                     else setImgError(true);
@@ -143,18 +142,18 @@ function AboutMe() {
             <img
               src="/diploma.png"
               alt="Diplom i Full Stack Software Development från Code Institute, 2024"
+              width={420}
+              height={297}
               loading="lazy"
               onError={() => setDiplomaError(true)}
             />
           )}
-          {/* TODO: lägg diplomet i public/diplom-code-institute.pdf */}
           <a
             className="about__diploma-file"
-            href="/diplom-code-institute.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={CV_PDF}
+            download
           >
-            Diplom — Code Institute, 2024
+            Ladda ner CV med utbildning (PDF)
           </a>
         </div>
       </div>

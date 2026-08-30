@@ -1,0 +1,27 @@
+# Oscar Bäckman — Portfolio
+
+> Business Operations Coordinator i Stockholm med bakgrund inom ekonomi, order och systemintegrationer.
+
+## Om
+
+Oscar Bäckman arbetar med att hålla ihop ekonomi, administration och systemflöden i växande bolag. Han har erfarenhet av SuperOffice, Visma Business, Wint och integrationer mellan affärssystem, webshop och fakturering. Bygger även egna verktyg, bland annat Textverket.
+
+## Sidor
+
+- Hem: https://oscarbackman.se/
+- Om mig: https://oscarbackman.se/about
+- Projekt: https://oscarbackman.se/projects
+- CV: https://oscarbackman.se/cv
+- Kontakt: https://oscarbackman.se/contact
+- CV (PDF): https://oscarbackman.se/cv/oscar-backman-cv.pdf
+
+## Kontakt
+
+- E-post: jan.oscar.backman@gmail.com
+- Telefon: +46 72 010 16 47
+- LinkedIn: https://www.linkedin.com/in/oscar-b%C3%A4ckman-3149b1167/
+- GitHub: https://github.com/OscarBackman92
+
+## Plats
+
+Stockholm, Sverige

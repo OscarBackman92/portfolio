@@ -1,0 +1,45 @@
+.breadcrumbs {
+  padding: 0.85rem 1.5rem 0;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  list-style: none;
+  font-size: 0.82rem;
+  color: var(--text-faint);
+}
+
+.breadcrumbs__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumbs__item:not(:last-child)::after {
+  content: "/";
+  color: var(--line-strong);
+  font-weight: 400;
+}
+
+.breadcrumbs__item a {
+  color: var(--text-dim);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.breadcrumbs__item a:hover {
+  color: var(--accent-deep);
+  border-color: var(--accent);
+}
+
+.breadcrumbs__item[aria-current="page"] {
+  color: var(--text);
+  font-weight: 500;
+}

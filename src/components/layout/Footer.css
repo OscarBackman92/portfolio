@@ -11,7 +11,7 @@
   margin: 0 auto;
   padding: 1.6rem 1.5rem;
   display: grid;
-  grid-template-columns: 1.2fr 1fr auto;
+  grid-template-columns: 1.2fr 1fr 1fr auto;
   align-items: center;
   gap: 1.2rem;
 }
@@ -26,6 +26,17 @@
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--ink);
+  text-decoration: none;
+}
+.footer__name:hover {
+  color: var(--accent-deep);
+}
+
+.footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem 1.1rem;
 }
 .footer__role {
   font-size: 0.82rem;
@@ -63,5 +74,6 @@
     text-align: center;
     justify-items: center;
   }
+  .footer__nav { justify-content: center; }
   .footer__copy { text-align: center; }
 }

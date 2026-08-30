@@ -1,24 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './FeaturedProject.css';
 
-/**
- * Repot bakom Textverket. Namnen matchas mot GitHub-listan så att projektet
- * inte visas både här och som ett vanligt kort.
- */
 export const SHOWCASE_REPOS = new Set(['textverket', 'foretagskollen']);
 
 const LIVE_URL = 'https://foretagskollen.vercel.app';
-
-// TODO: byt till .../textverket när repot är omdöpt. GitHub redirectar från
-// det gamla namnet, så den här länken fungerar i båda lägen.
 const REPO_URL = 'https://github.com/OscarBackman92/foretagskollen';
 
-// TODO: lägg skärmbilden i public/textverket.png (1200x750).
-const SCREENSHOT = '/textverket.png';
-
 function FeaturedProject() {
-  const [shotMissing, setShotMissing] = useState(false);
-
   return (
     <article className="featured reveal" style={{ animationDelay: '0.14s' }}>
       <div className="featured__body">
@@ -52,19 +40,9 @@ function FeaturedProject() {
         </div>
       </div>
 
-      <div className="featured__shot">
-        {shotMissing ? (
-          <span className="featured__shot-fallback">Textverket</span>
-        ) : (
-          <img
-            src={SCREENSHOT}
-            alt="Startsidan för Textverket"
-            width={1200}
-            height={750}
-            loading="lazy"
-            onError={() => setShotMissing(true)}
-          />
-        )}
+      <div className="featured__shot featured__shot--brand" aria-hidden="true">
+        <span className="featured__shot-label">Textverket</span>
+        <span className="featured__shot-sub">AI-verktyg för svenska småföretag</span>
       </div>
     </article>
   );

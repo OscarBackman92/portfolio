@@ -27,14 +27,13 @@ function Home() {
             {imgError ? (
               <span className="home__monogram">OB</span>
             ) : (
-              /* TODO: ersätt public/profile.jpg med en 400x400-version */
               <img
                 src={PROFILE_IMG}
-                alt="Oscar Bäckman"
+                alt="Oscar Bäckman, Business Operations Coordinator i Stockholm"
                 width={132}
                 height={132}
                 loading="eager"
-                fetchpriority="high"
+                fetchPriority="high"
                 onError={() => setImgError(true)}
               />
             )}
@@ -64,6 +63,9 @@ function Home() {
         </p>
 
         <div className="home__cta reveal" style={{ animationDelay: '0.32s' }}>
+          <Link to="/about" className="btn btn--ghost">
+            Om mig
+          </Link>
           <Link to="/cv" className="btn">
             Visa CV
           </Link>

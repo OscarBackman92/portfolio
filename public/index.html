@@ -2,15 +2,20 @@
 <html lang="sv">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <!-- Startsidans värden. src/components/Seo.js skriver om title, description,
-         canonical och og/twitter-taggarna per vy när appen har startat. -->
-    <meta name="description" content="Business Operations Coordinator i Stockholm. Håller ihop ekonomi, order och systemflöden i bolag som växer fortare än sina rutiner." />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" sizes="any" />
+    <link rel="icon" href="%PUBLIC_URL%/logo192.png" type="image/png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0b1f1c" />
     <meta name="author" content="Oscar Bäckman" />
+    <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph — statiskt för startsidan, eftersom länkförhandsvisare inte kör JavaScript -->
+    <title>Oscar Bäckman — Business Operations Coordinator</title>
+    <meta name="description" content="Business Operations Coordinator i Stockholm. Håller ihop ekonomi, order och systemflöden i bolag som växer fortare än sina rutiner." />
+    <link rel="canonical" href="https://oscarbackman.se/" />
+
+    <meta property="og:site_name" content="Oscar Bäckman" />
     <meta property="og:title" content="Oscar Bäckman — Business Operations Coordinator" />
     <meta property="og:description" content="Business Operations Coordinator i Stockholm. Håller ihop ekonomi, order och systemflöden i bolag som växer fortare än sina rutiner." />
     <meta property="og:type" content="website" />
@@ -22,17 +27,63 @@
     <meta property="og:image:alt" content="Oscar Bäckman — Business Operations Coordinator i Stockholm" />
 
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Oscar Bäckman — Business Operations Coordinator" />
+    <meta name="twitter:description" content="Business Operations Coordinator i Stockholm. Håller ihop ekonomi, order och systemflöden i bolag som växer fortare än sina rutiner." />
     <meta name="twitter:image" content="https://oscarbackman.se/og.png" />
+    <meta name="twitter:image:alt" content="Oscar Bäckman — Business Operations Coordinator i Stockholm" />
 
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Oscar Bäckman — Business Operations Coordinator</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://oscarbackman.se/#website",
+            "url": "https://oscarbackman.se/",
+            "name": "Oscar Bäckman",
+            "inLanguage": "sv-SE"
+          },
+          {
+            "@type": "Person",
+            "@id": "https://oscarbackman.se/#person",
+            "name": "Oscar Bäckman",
+            "jobTitle": "Business Operations Coordinator",
+            "email": "jan.oscar.backman@gmail.com",
+            "telephone": "+46720101647",
+            "url": "https://oscarbackman.se/",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Stockholm",
+              "addressRegion": "Stockholms län",
+              "addressCountry": "SE"
+            }
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://oscarbackman.se/#service",
+            "name": "Oscar Bäckman",
+            "url": "https://oscarbackman.se/",
+            "areaServed": { "@type": "City", "name": "Stockholm" },
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Stockholm",
+              "addressCountry": "SE"
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      Den här webbplatsen kräver JavaScript. Besök
+      <a href="https://oscarbackman.se/cv/oscar-backman-cv.pdf">CV (PDF)</a>
+      eller maila <a href="mailto:jan.oscar.backman@gmail.com">jan.oscar.backman@gmail.com</a>.
+    </noscript>
     <div id="root"></div>
   </body>
 </html>

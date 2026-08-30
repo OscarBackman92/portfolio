@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://oscarbackman.se/sitemap.xml
+
+# AI / LLM-crawlare
+# https://oscarbackman.se/llms.txt

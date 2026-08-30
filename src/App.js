@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import Breadcrumbs from './components/Breadcrumbs';
 import './App.css';
 
 // Ruttbaserad kodsplittring — EmailJS-klienten behövs bara på /contact
@@ -23,6 +24,8 @@ function App() {
       </a>
 
       <Navbar />
+
+      <Breadcrumbs />
 
       <main className="app-main" id="main" tabIndex={-1}>
         <Suspense fallback={routeFallback}>
