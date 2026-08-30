@@ -61,6 +61,16 @@
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
+/* Honeypot: utanför skärmen istället för display:none, som bottar ofta hoppar över */
+.contact__honeypot {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .contact__submit {
   width: 100%;
   margin-top: 0.35rem;
@@ -77,6 +87,10 @@
   font-size: 0.92rem;
   font-weight: 500;
 }
+/* Fältet ligger alltid i DOM:en för aria-live, men ska inte ta plats när det är tomt */
+.contact__status:empty {
+  margin-top: 0;
+}
 .contact__status--ok { color: var(--ok); }
 .contact__status--err { color: var(--danger); }
 
@@ -92,6 +106,8 @@
 .contact__direct-link {
   color: var(--text-dim);
   font-weight: 500;
+  /* Höjer träffytan över 40 px utan att radhöjden ändras nämnvärt */
+  padding: 0.6rem 0;
   border-bottom: 1px solid transparent;
   transition: color 0.2s ease, border-color 0.2s ease;
 }

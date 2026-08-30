@@ -43,6 +43,8 @@
   font-size: 0.88rem;
   font-weight: 500;
   color: var(--text-dim);
+  /* Träffyta över 40 px — sidfotens höjd styrs av varumärkesblocket */
+  padding: 0.6rem 0;
   transition: color 0.2s ease;
 }
 .footer__link:hover {

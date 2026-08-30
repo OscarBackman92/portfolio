@@ -82,6 +82,12 @@
   color: var(--text-dim);
   text-align: right;
 }
+/* Telefonlänken behöver en träffyta över 40 px */
+.about__meta dd a {
+  display: inline-block;
+  padding: 0.6rem 0;
+  margin: -0.6rem 0;
+}
 .about__meta dd.ok {
   color: var(--ok);
   font-weight: 500;
@@ -104,19 +110,11 @@
   padding: 0.75rem 1rem;
 }
 
-.about__hobby {
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: var(--text-dim);
-  margin: 0 0 1.75rem;
-  max-width: 58ch;
-}
-
 .about__bio {
   font-size: 1.12rem;
   color: var(--text-dim);
   line-height: 1.8;
-  margin-bottom: 0.85rem;
+  margin-bottom: 1.8rem;
 }
 
 .about__blocks {
@@ -197,9 +195,16 @@
   border: 1px solid var(--line);
 }
 
-.about__diploma-fallback {
-  padding: 1.5rem 1rem;
-  color: var(--text-dim);
+.about__diploma-file {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--accent-deep);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+.about__diploma-file:hover {
+  border-color: var(--accent);
 }
 .about__diploma-link {
   display: inline-block;

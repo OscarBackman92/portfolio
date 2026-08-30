@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Seo from './Seo';
 import './AboutMe.css';
 
 const CV_PDF = '/cv/oscar-backman-cv.pdf';
@@ -20,11 +21,16 @@ function AboutMe() {
 
   return (
     <section className="about section">
+      <Seo
+        title="Om mig — Oscar Bäckman"
+        description="Bakgrund inom ekonomi, orderadministration och systemintegrationer. Bygger också egna verktyg."
+        path="/about"
+      />
       <div className="section-inner">
         <div className="eyebrow reveal">Om mig</div>
-        <h2 className="about__title display reveal" style={{ animationDelay: '0.08s' }}>
+        <h1 className="about__title display reveal" style={{ animationDelay: '0.08s' }}>
           Koordinerar processer, avtal och system
-        </h2>
+        </h1>
 
         <div className="about__grid">
           <aside className="about__profile reveal" style={{ animationDelay: '0.12s' }}>
@@ -32,10 +38,14 @@ function AboutMe() {
               {imgError ? (
                 <span className="about__monogram">OB</span>
               ) : (
+                // TODO: ersätt public/profile.jpg med en 400x400-version
                 <img
                   src={useFallback ? PROFILE_IMG_FALLBACK : PROFILE_IMG}
                   alt="Oscar Bäckman"
-                  loading="lazy"
+                  width={148}
+                  height={148}
+                  loading="eager"
+                  fetchpriority="high"
                   onError={() => {
                     if (!useFallback) setUseFallback(true);
                     else setImgError(true);
@@ -43,7 +53,7 @@ function AboutMe() {
                 />
               )}
             </div>
-            <h3 className="about__name">Oscar Bäckman</h3>
+            <h2 className="about__name">Oscar Bäckman</h2>
             <p className="about__role">Business Operations Coordinator</p>
 
             <dl className="about__meta">
@@ -81,14 +91,9 @@ function AboutMe() {
               integrationer ska hänga ihop, och arbetar nära ekonomi, försäljning
               och support.
             </p>
-            <p className="about__hobby reveal" style={{ animationDelay: '0.18s' }}>
-              Kodning är något jag gör på sidan om jobbet, för att det är kul —
-              inte något jag arbetat med.
-            </p>
-
             <div className="about__blocks">
               <div className="about__block panel reveal" style={{ animationDelay: '0.2s' }}>
-                <h3 className="about__block-title">Kompetenser</h3>
+                <h2 className="about__block-title">Kompetenser</h2>
                 <div className="about__tags">
                   {SKILLS.map((s) => (
                     <span className="about__tag" key={s}>{s}</span>
@@ -97,7 +102,7 @@ function AboutMe() {
               </div>
 
               <div className="about__block panel reveal" style={{ animationDelay: '0.26s' }}>
-                <h3 className="about__block-title">Certifieringar</h3>
+                <h2 className="about__block-title">Certifieringar</h2>
                 <ul className="about__list">
                   <li>Certifierad Ekonomiassistent — Påhlmans Handelsinstitut</li>
                   <li>MS Teams & SharePoint — Informator</li>
@@ -105,7 +110,7 @@ function AboutMe() {
               </div>
 
               <div className="about__block panel reveal" style={{ animationDelay: '0.32s' }}>
-                <h3 className="about__block-title">Utbildning</h3>
+                <h2 className="about__block-title">Utbildning</h2>
                 <ul className="about__list">
                   <li>Full Stack Development — Code Institute</li>
                   <li>Tekniskt gymnasium — Värmdö Tekniska Gymnasium</li>
@@ -117,26 +122,40 @@ function AboutMe() {
         </div>
 
         <div className="about__diploma panel reveal" style={{ animationDelay: '0.36s' }}>
-          <h3 className="about__block-title">På sidan om</h3>
+          <h2 className="about__block-title">Verktyg jag byggt</h2>
           <p className="about__diploma-note">
-            2024 läste jag Full Stack Development hos Code Institute av nyfikenhet.
-            Det är ett sidospår, inte en yrkesroll.{' '}
+            Jag bygger också egna verktyg. Det började med en fullstackutbildning
+            hos Code Institute 2024 och har blivit ett sätt att lösa mina egna
+            arbetsproblem — en jobbsöksapp som hämtar annonser från
+            Arbetsförmedlingens API, och Textverket, en gratistjänst som skriver
+            offertmejl och produkttexter åt svenska småföretag.
+          </p>
+          <p className="about__diploma-note">
+            Jag söker inte utvecklarjobb. Men jag vet vad en integration kostar
+            att bygga, var den brukar gå sönder och hur man beskriver ett problem
+            så att en utvecklare kan lösa det. Det gör mig till en bättre
+            kravställare.{' '}
             <Link to="/projects" className="about__diploma-link">
-              Några hobbyprojekt →
+              Se projekten →
             </Link>
           </p>
-          {diplomaError ? (
-            <div className="about__diploma-fallback">
-              <p>Diplom — Code Institute, 2024</p>
-            </div>
-          ) : (
+          {!diplomaError && (
             <img
               src="/diploma.png"
-              alt="Diplom i Full Stack Development från Code Institute, ett sidospår vid sidan av jobbet"
+              alt="Diplom i Full Stack Software Development från Code Institute, 2024"
               loading="lazy"
               onError={() => setDiplomaError(true)}
             />
           )}
+          {/* TODO: lägg diplomet i public/diplom-code-institute.pdf */}
+          <a
+            className="about__diploma-file"
+            href="/diplom-code-institute.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Diplom — Code Institute, 2024
+          </a>
         </div>
       </div>
     </section>

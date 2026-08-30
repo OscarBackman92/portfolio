@@ -129,8 +129,13 @@
   line-height: 1.7;
   color: rgba(232, 238, 236, 0.78);
   max-width: 48ch;
-  margin-bottom: 2rem;
+  margin-bottom: 1.05rem;
   font-weight: 300;
+}
+
+/* Kort avslutande stycke under ingressen */
+.home__lede--short {
+  margin-bottom: 2rem;
 }
 
 .home__cta {

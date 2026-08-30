@@ -1,0 +1,101 @@
+/* Tyngre än ett vanligt projektkort: full bredd och hero-ytan i mörkgrönt */
+.featured {
+  display: grid;
+  grid-template-columns: 1fr 0.85fr;
+  gap: 2.2rem;
+  align-items: center;
+  margin-bottom: 2.4rem;
+  padding: 2.2rem;
+  border: 1px solid var(--ink-soft);
+  border-radius: var(--radius-lg);
+  color: var(--bg-soft);
+  background:
+    radial-gradient(ellipse 60% 70% at 88% 20%, var(--accent-glow), transparent 60%),
+    linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 55%, var(--ink) 100%);
+}
+
+.featured__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #7fd3c1;
+  font-weight: 500;
+  margin-bottom: 0.9rem;
+}
+.featured__eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1.5px;
+  background: #7fd3c1;
+}
+
+.featured__title {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  color: #fff;
+  margin-bottom: 0.85rem;
+}
+
+.featured__text {
+  color: rgba(244, 247, 245, 0.8);
+  line-height: 1.7;
+  font-size: 1.02rem;
+  max-width: 46ch;
+  margin-bottom: 1.6rem;
+  font-weight: 300;
+}
+
+.featured__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.featured .btn--ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: transparent;
+}
+.featured .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+  color: #fff;
+}
+
+/* Ramen ska se hel ut även innan skärmbilden finns i public/ */
+.featured__shot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1200 / 750;
+  overflow: hidden;
+  border: 1px solid rgba(244, 247, 245, 0.18);
+  border-radius: var(--radius);
+  background: rgba(244, 247, 245, 0.06);
+}
+.featured__shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.featured__shot-fallback {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(244, 247, 245, 0.45);
+}
+
+@media (max-width: 820px) {
+  .featured {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+    padding: 1.7rem;
+  }
+  .featured__text {
+    max-width: none;
+  }
+}

@@ -3,15 +3,26 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="description" content="Oscar Bäckman — Business Operations Coordinator i Stockholm. Ekonomi, administration och systemflöden." />
+    <!-- Startsidans värden. src/components/Seo.js skriver om title, description,
+         canonical och og/twitter-taggarna per vy när appen har startat. -->
+    <meta name="description" content="Business Operations Coordinator i Stockholm. Håller ihop ekonomi, order och systemflöden i bolag som växer fortare än sina rutiner." />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0b1f1c" />
     <meta name="author" content="Oscar Bäckman" />
 
-    <!-- Open Graph -->
+    <!-- Open Graph — statiskt för startsidan, eftersom länkförhandsvisare inte kör JavaScript -->
     <meta property="og:title" content="Oscar Bäckman — Business Operations Coordinator" />
-    <meta property="og:description" content="Portfolio för Oscar Bäckman. Ekonomi, administration och systemflöden i Stockholm." />
+    <meta property="og:description" content="Business Operations Coordinator i Stockholm. Håller ihop ekonomi, order och systemflöden i bolag som växer fortare än sina rutiner." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://oscarbackman.se/" />
+    <meta property="og:locale" content="sv_SE" />
+    <meta property="og:image" content="https://oscarbackman.se/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Oscar Bäckman — Business Operations Coordinator i Stockholm" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://oscarbackman.se/og.png" />
 
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />

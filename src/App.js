@@ -1,29 +1,40 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
-import Home from './components/Home';
-import AboutMe from './components/AboutMe';
-import GitHubRepos from './components/GithubRepos';
-import Contact from './components/Contact';
-import CV from './components/CV';
-import NotFound from './components/NotFound';
 import Footer from './components/layout/Footer';
 import './App.css';
+
+// Ruttbaserad kodsplittring — EmailJS-klienten behövs bara på /contact
+const Home = lazy(() => import('./components/Home'));
+const AboutMe = lazy(() => import('./components/AboutMe'));
+const GitHubRepos = lazy(() => import('./components/GithubRepos'));
+const Contact = lazy(() => import('./components/Contact'));
+const CV = lazy(() => import('./components/CV'));
+const NotFound = lazy(() => import('./components/NotFound'));
+
+// Tom yta med samma höjd som en vy — ingen spinner som blinkar förbi
+const routeFallback = <div className="route-placeholder" aria-hidden="true" />;
 
 function App() {
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#main">
+        Hoppa till innehåll
+      </a>
+
       <Navbar />
 
-      <main className="app-main">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutMe />} />
-          <Route path="/projects" element={<GitHubRepos />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/cv" element={<CV />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+      <main className="app-main" id="main" tabIndex={-1}>
+        <Suspense fallback={routeFallback}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutMe />} />
+            <Route path="/projects" element={<GitHubRepos />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/cv" element={<CV />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </main>
 
       <Footer />

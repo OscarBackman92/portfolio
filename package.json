@@ -12,6 +12,7 @@
     "gh-pages": "^6.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-helmet-async": "^3.0.0",
     "react-router-dom": "^7.2.0",
     "react-scripts": "^5.0.1",
     "typescript": "^4.9.5",
@@ -22,6 +23,7 @@
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "og": "node scripts/generate-og.mjs",
     "deploy": "gh-pages -d build",
     "heroku-postbuild": "npm run build"
   },
@@ -49,6 +51,7 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "express": "^4.21.2",
-    "serve": "^14.2.4"
+    "serve": "^14.2.4",
+    "sharp": "^0.35.4"
   }
 }

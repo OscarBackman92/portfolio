@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Seo from './Seo';
 import './Home.css';
 
 const PROFILE_IMG = '/profile.jpg';
@@ -9,6 +10,12 @@ function Home() {
 
   return (
     <section className="home">
+      <Seo
+        title="Oscar Bäckman — Business Operations Coordinator"
+        description="Business Operations Coordinator i Stockholm. Håller ihop ekonomi, order och systemflöden i bolag som växer fortare än sina rutiner."
+        path="/"
+      />
+
       <div className="home__visual" aria-hidden="true">
         {!imgError && <img className="home__ambient" src={PROFILE_IMG} alt="" />}
         <div className="home__wash" />
@@ -20,9 +27,14 @@ function Home() {
             {imgError ? (
               <span className="home__monogram">OB</span>
             ) : (
+              /* TODO: ersätt public/profile.jpg med en 400x400-version */
               <img
                 src={PROFILE_IMG}
                 alt="Oscar Bäckman"
+                width={132}
+                height={132}
+                loading="eager"
+                fetchpriority="high"
                 onError={() => setImgError(true)}
               />
             )}
@@ -39,9 +51,16 @@ function Home() {
         </h1>
 
         <p className="home__lede reveal" style={{ animationDelay: '0.22s' }}>
-          Jag trivs i den koordinerande rollen där processer, avtal och
-          integrationer ska hänga ihop. Jag arbetar nära ekonomi, försäljning
-          och support, och bygger gärna om manuella rutiner till enklare flöden.
+          Jag håller ihop ekonomi, order och system i bolag som växer fortare än
+          sina rutiner. Senast på House of Service, där jag ägde kund- och
+          leverantörsfakturaflödet, var huvudkontakt mot vår ekonomipartner och
+          byggde vidare på integrationerna mellan affärssystem, webshop och
+          fakturering.
+        </p>
+
+        <p className="home__lede home__lede--short reveal" style={{ animationDelay: '0.27s' }}>
+          När ett flöde görs manuellt tre gånger brukar jag automatisera det
+          fjärde.
         </p>
 
         <div className="home__cta reveal" style={{ animationDelay: '0.32s' }}>

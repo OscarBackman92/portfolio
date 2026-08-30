@@ -1,31 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
+import Seo from './Seo';
 import './Contact.css';
 
 const EMAILJS_SERVICE = 'service_e7qqbor';
 const EMAILJS_TEMPLATE = 'template_enxgdom';
 const EMAILJS_PUBLIC_KEY = '6rEVB8tqgeAY6mkgV';
 
-function getErrorMessage(err) {
-  const text = err?.text || err?.message || '';
+/** Frekvensspärr: en sändning per minut */
+const RATE_KEY = 'contact:lastSentAt';
+const RATE_WINDOW = 60 * 1000;
 
-  if (text.includes('Invalid grant') || text.includes('Gmail')) {
-    return 'E-posttjänsten behöver återkopplas i EmailJS (Gmail). Mejla mig direkt så länge.';
-  }
-  if (text.includes('limit') || err?.status === 429) {
-    return 'För många försök. Vänta en stund eller mejla mig direkt.';
-  }
-  if (text.includes('Public Key') || text.includes('user_id')) {
-    return 'E-postkonfigurationen är felaktig. Mejla mig direkt så länge.';
-  }
+const MESSAGES = {
+  sending: 'Skickar…',
+  success: 'Tack! Meddelandet är skickat — jag återkommer inom ett dygn.',
+  error:
+    'Något gick fel. Mejla mig direkt på jan.oscar.backman@gmail.com så löser vi det.',
+  throttled: 'Du skickade nyss ett meddelande — vänta en minut.',
+};
 
-  return 'Kunde inte skicka meddelandet. Försök igen eller mejla mig direkt.';
+function isThrottled() {
+  try {
+    const last = Number(localStorage.getItem(RATE_KEY));
+    return Boolean(last) && Date.now() - last < RATE_WINDOW;
+  } catch {
+    return false;
+  }
+}
+
+function markSent() {
+  try {
+    localStorage.setItem(RATE_KEY, String(Date.now()));
+  } catch {
+    // Privat läge — spärren är ett komplement, inte enda skyddet
+  }
 }
 
 function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [company, setCompany] = useState('');
   const [status, setStatus] = useState('idle');
-  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
@@ -34,41 +48,60 @@ function Contact() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    if (status === 'error') {
-      setStatus('idle');
-      setErrorMessage('');
-    }
+    if (status === 'error' || status === 'throttled') setStatus('idle');
+  };
+
+  const resetForm = () => {
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    setCompany('');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Honeypot: bara bottar fyller i fältet. Avbryt tyst.
+    if (company.trim()) {
+      setStatus('success');
+      resetForm();
+      return;
+    }
+
+    if (isThrottled()) {
+      setStatus('throttled');
+      return;
+    }
+
     setStatus('sending');
-    setErrorMessage('');
 
     emailjs
       .sendForm(EMAILJS_SERVICE, EMAILJS_TEMPLATE, e.target)
       .then(() => {
+        markSent();
         setStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        resetForm();
       })
-      .catch((err) => {
-        setStatus('error');
-        setErrorMessage(getErrorMessage(err));
-      });
+      .catch(() => setStatus('error'));
   };
 
   const sending = status === 'sending';
+  const statusMessage = MESSAGES[status] || '';
 
   return (
     <section className="contact section">
+      <Seo
+        title="Kontakt — Oscar Bäckman"
+        description="Öppen för roller inom order, inköp och business operations i Stockholm. Hör av dig."
+        path="/contact"
+      />
       <div className="section-inner contact__inner">
         <div className="eyebrow reveal">Kontakt</div>
-        <h2 className="contact__title display reveal" style={{ animationDelay: '0.08s' }}>
-          Låt oss prata
-        </h2>
+        <h1 className="contact__title display reveal" style={{ animationDelay: '0.08s' }}>
+          Hör av dig
+        </h1>
         <p className="contact__lede reveal" style={{ animationDelay: '0.12s' }}>
-          Har du en möjlighet eller vill bara stämma av? Skicka ett meddelande
-          så återkommer jag så snart jag kan.
+          Jag är öppen för roller inom order, inköp, ekonomiadministration och
+          business operations i Stockholm — gärna där systemen är många och
+          rutinerna halvfärdiga. Skriv några rader så svarar jag inom ett dygn.
         </p>
 
         <form
@@ -85,6 +118,7 @@ function Contact() {
                 value={formData.name}
                 onChange={handleChange}
                 required
+                autoComplete="name"
                 placeholder="Ditt namn"
               />
             </label>
@@ -96,6 +130,7 @@ function Contact() {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                autoComplete="email"
                 placeholder="din@epost.se"
               />
             </label>
@@ -125,20 +160,33 @@ function Contact() {
             />
           </label>
 
+          {/* Honeypot — dolt utanför skärmen, inte med display:none */}
+          <div className="contact__honeypot" aria-hidden="true">
+            <label htmlFor="contact-company">Företag</label>
+            <input
+              id="contact-company"
+              type="text"
+              name="company"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
+
           <button type="submit" className="btn contact__submit" disabled={sending}>
             {sending ? 'Skickar…' : 'Skicka meddelande'}
           </button>
 
-          {status === 'success' && (
-            <p className="contact__status contact__status--ok">
-              Meddelandet är skickat. Jag återkommer så snart jag kan.
-            </p>
-          )}
-          {status === 'error' && (
-            <p className="contact__status contact__status--err">
-              {errorMessage}
-            </p>
-          )}
+          <p
+            role="status"
+            aria-live="polite"
+            className={`contact__status${
+              status === 'success' ? ' contact__status--ok' : ''
+            }${status === 'error' ? ' contact__status--err' : ''}`}
+          >
+            {statusMessage}
+          </p>
         </form>
 
         <div className="contact__direct reveal" style={{ animationDelay: '0.24s' }}>

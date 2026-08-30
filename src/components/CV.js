@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Seo from './Seo';
 import './CV.css';
 
 const CV_PDF = '/cv/oscar-backman-cv.pdf';
@@ -29,7 +30,7 @@ const SKILL_GROUPS = [
   },
   {
     label: 'Teknik',
-    items: ['VS Code', 'GitHub', 'Claude (AI)'],
+    items: ['VS Code', 'GitHub', 'AI-assisterad utveckling (Claude Code, Cursor)'],
   },
   {
     label: 'Övrigt',
@@ -92,7 +93,7 @@ const EDUCATION = [
     org: 'Code Institute',
     period: '2024',
     detail:
-      'Diplom i Full Stack Software Development med fokus på frontend. Ett sidospår av intresse — inte yrkeserfarenhet. Betyg: Pass.',
+      'Diplom i Full Stack Software Development med fokus på frontend. Betyg: Pass.',
   },
   {
     title: 'MS Teams & SharePoint för administratörer',
@@ -123,6 +124,11 @@ const EDUCATION = [
 function CV() {
   return (
     <section className="cv section">
+      <Seo
+        title="CV — Oscar Bäckman"
+        description="Meritförteckning: business operations, orderadministration och ekonomiassistent 2017–2026."
+        path="/cv"
+      />
       <div className="section-inner cv__inner">
         <div className="cv__header reveal">
           <div className="eyebrow">Curriculum Vitae</div>
@@ -245,22 +251,10 @@ function CV() {
           </article>
 
           <article className="cv__block panel reveal" style={{ animationDelay: '0.26s' }}>
-            <h2 className="cv__section-title">På sidan om</h2>
+            <h2 className="cv__section-title">Egna verktyg</h2>
             <p className="cv__text">
-              Kodning är ett intresse vid sidan av jobbet, inte något jag arbetat med.
-              Några hobbyprojekt finns under{' '}
-              <Link to="/projects" className="cv__inline-link">
-                Projekt
-              </Link>{' '}
-              och på{' '}
-              <a
-                href="https://github.com/OscarBackman92"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cv__inline-link"
-              >
-                GitHub
-              </a>.
+              Jag bygger egna verktyg vid sidan av arbetet — se{' '}
+              <Link to="/projects" className="cv__inline-link">Projekt</Link>.
             </p>
           </article>
         </div>

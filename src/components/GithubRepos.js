@@ -1,15 +1,19 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import Seo from './Seo';
+import FeaturedProject, { SHOWCASE_REPOS } from './FeaturedProject';
 import './GithubRepos.css';
 
 const GITHUB_USER = 'OscarBackman92';
 const API_URL = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`;
 
-/** Verified live URLs — overrides stale GitHub homepage fields */
-const HOMEPAGE_OVERRIDES = {
-  portfolio: 'https://portfolio-alpha-steel-ej8y4905sd.vercel.app',
-};
+/** Cache i localStorage — GitHubs oautentiserade tak är 60 anrop per timme och IP */
+const CACHE_KEY = 'gh:repos:v1';
+const CACHE_TTL = 6 * 60 * 60 * 1000;
 
-/** Known-dead hosts (e.g. expired Heroku free tier) */
+/** Repot för den här sajten — dess Live-länk pekar på sidan man redan står på */
+const EXCLUDED_REPOS = new Set(['portfolio']);
+
+/** Kända döda värdar (t.ex. Herokus avslutade gratisnivå) */
 const DEAD_HOMEPAGE_HOSTS = new Set([
   'oscarportfolio-c9ac98cf9943.herokuapp.com',
   'fitnessapi-d773a1148384.herokuapp.com',
@@ -17,7 +21,7 @@ const DEAD_HOMEPAGE_HOSTS = new Set([
   'python3battleship-c25008d31b4b.herokuapp.com',
 ]);
 
-/** Backend / code-only repos — no Live button */
+/** Backend- och kodrepon utan publik sida — ingen Live-knapp */
 const CODE_ONLY_REPOS = new Set([
   'af-jobbansokan-api',
   'demo-backend',
@@ -28,24 +32,26 @@ const CODE_ONLY_REPOS = new Set([
   'budget_frontend',
 ]);
 
-function getLiveUrl(repo) {
-  if (CODE_ONLY_REPOS.has(repo.name)) return null;
+/** Kategorin läses ur repots topics, i den här prioritetsordningen */
+const CATEGORY_TOPICS = [
+  'featured',
+  'api',
+  'react',
+  'django',
+  'python',
+  'javascript',
+  'kurs',
+];
 
-  const url = HOMEPAGE_OVERRIDES[repo.name] || repo.homepage;
-  if (!url) return null;
-
-  try {
-    if (DEAD_HOMEPAGE_HOSTS.has(new URL(url).hostname)) return null;
-  } catch {
-    return null;
-  }
-
-  return url;
-}
-
-function isApiRepo(repo) {
-  return CODE_ONLY_REPOS.has(repo.name);
-}
+const CATEGORY_LABELS = {
+  featured: 'I drift',
+  api: 'API',
+  react: 'React',
+  django: 'Django',
+  python: 'Python',
+  javascript: 'JavaScript',
+  kurs: 'Kurs',
+};
 
 const LANG_COLORS = {
   JavaScript: '#c9a227',
@@ -62,6 +68,73 @@ const LANG_COLORS = {
   Vue: '#41b883',
 };
 
+function trimRepo(repo) {
+  return {
+    id: repo.id,
+    name: repo.name,
+    description: repo.description,
+    html_url: repo.html_url,
+    homepage: repo.homepage,
+    language: repo.language,
+    stargazers_count: repo.stargazers_count,
+    forks_count: repo.forks_count,
+    pushed_at: repo.pushed_at,
+    topics: repo.topics || [],
+    archived: repo.archived,
+    fork: repo.fork,
+  };
+}
+
+function readCache() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(CACHE_KEY));
+    if (!parsed || typeof parsed.fetchedAt !== 'number') return null;
+    if (!Array.isArray(parsed.repos)) return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+function writeCache(repos) {
+  try {
+    localStorage.setItem(
+      CACHE_KEY,
+      JSON.stringify({ fetchedAt: Date.now(), repos })
+    );
+  } catch {
+    // Privat läge eller full kvot — cache är en bonus, inte ett krav
+  }
+}
+
+function getLiveUrl(repo) {
+  if (CODE_ONLY_REPOS.has(repo.name)) return null;
+  if (!repo.homepage) return null;
+
+  try {
+    if (DEAD_HOMEPAGE_HOSTS.has(new URL(repo.homepage).hostname)) return null;
+  } catch {
+    return null;
+  }
+
+  return repo.homepage;
+}
+
+function getCategory(repo) {
+  const topics = repo.topics || [];
+  const match = CATEGORY_TOPICS.find((topic) => topics.includes(topic));
+  return match ? CATEGORY_LABELS[match] : null;
+}
+
+function isFeatured(repo) {
+  return (repo.topics || []).includes('featured');
+}
+
+/** Visas i Textverket-blocket ovanför listan, ska inte dyka upp två gånger */
+function isShowcased(repo) {
+  return SHOWCASE_REPOS.has(repo.name) && isFeatured(repo);
+}
+
 function timeAgo(dateStr) {
   const diff = Date.now() - new Date(dateStr).getTime();
   const days = Math.floor(diff / 86400000);
@@ -74,78 +147,105 @@ function timeAgo(dateStr) {
 function GitHubRepos() {
   const [repos, setRepos] = useState([]);
   const [status, setStatus] = useState('loading');
-  const [error, setError] = useState('');
+  const [fromCache, setFromCache] = useState(false);
   const [filter, setFilter] = useState('ALL');
 
   useEffect(() => {
-    const controller = new AbortController();
+    const cached = readCache();
 
-    async function load() {
-      setStatus('loading');
-      setError('');
-      try {
-        const res = await fetch(API_URL, { signal: controller.signal });
-        if (!res.ok) {
-          if (res.status === 403) {
-            throw new Error('GitHub API-gräns nådd. Försök igen om en stund.');
-          }
-          throw new Error(`GitHub svarade med ${res.status}.`);
-        }
-        const data = await res.json();
-        if (!Array.isArray(data)) throw new Error('Oväntat svar från GitHub.');
-        setRepos(data.filter((r) => !r.fork && !r.archived));
-        setStatus('ready');
-      } catch (err) {
-        if (err.name === 'AbortError') return;
-        setError(err.message || 'Kunde inte ladda projekt.');
-        setStatus('error');
-      }
+    if (cached && Date.now() - cached.fetchedAt < CACHE_TTL) {
+      setRepos(cached.repos);
+      setStatus('ready');
+      return undefined;
     }
 
-    load();
-    return () => controller.abort();
+    let cancelled = false;
+
+    fetch(API_URL, {
+      headers: {
+        Accept: 'application/vnd.github+json, application/vnd.github.mercy-preview+json',
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error(`GitHub svarade ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        if (cancelled) return;
+        const trimmed = data.map(trimRepo);
+        writeCache(trimmed);
+        setRepos(trimmed);
+        setFromCache(false);
+        setStatus('ready');
+      })
+      .catch(() => {
+        if (cancelled) return;
+        // Utgången cache är bättre än en tom projektsida
+        if (cached) {
+          setRepos(cached.repos);
+          setFromCache(true);
+          setStatus('ready');
+        } else {
+          setStatus('error');
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  const sorted = useMemo(() => {
-    return [...repos].sort(
-      (a, b) =>
-        b.stargazers_count - a.stargazers_count ||
-        new Date(b.pushed_at) - new Date(a.pushed_at)
-    );
+  const listed = useMemo(() => {
+    return repos
+      .filter(
+        (repo) =>
+          !repo.archived &&
+          !repo.fork &&
+          !EXCLUDED_REPOS.has(repo.name) &&
+          !isShowcased(repo)
+      )
+      .sort((a, b) => {
+        const featureGap = Number(isFeatured(b)) - Number(isFeatured(a));
+        if (featureGap !== 0) return featureGap;
+        return new Date(b.pushed_at) - new Date(a.pushed_at);
+      });
   }, [repos]);
 
   const languages = useMemo(() => {
-    const set = new Set(sorted.map((r) => r.language).filter(Boolean));
+    const set = new Set(listed.map((repo) => repo.language).filter(Boolean));
     return ['ALL', ...Array.from(set).sort()];
-  }, [sorted]);
+  }, [listed]);
 
   const visible =
-    filter === 'ALL' ? sorted : sorted.filter((r) => r.language === filter);
+    filter === 'ALL' ? listed : listed.filter((repo) => repo.language === filter);
 
   return (
     <section className="repos section">
+      <Seo
+        title="Projekt — Oscar Bäckman"
+        description="Verktyg och projekt jag byggt, från Textverket till kursarbeten i Python och JavaScript."
+        path="/projects"
+      />
       <div className="section-inner">
-        <div className="eyebrow reveal">På sidan om</div>
-        <h2 className="repos__title display reveal" style={{ animationDelay: '0.08s' }}>
-          Kodning som hobby
-        </h2>
+        <div className="eyebrow reveal">Projekt</div>
+        <h1 className="repos__title display reveal" style={{ animationDelay: '0.08s' }}>
+          Saker jag byggt
+        </h1>
         <p className="repos__lede reveal" style={{ animationDelay: '0.12s' }}>
-          Ett intresse vid sidan av jobbet — inte en yrkesroll. Här är
-          hobbyprojekt från{' '}
-          <a
-            href={`https://github.com/${GITHUB_USER}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="repos__user"
-          >
-            GitHub
-          </a>, bland annat från en kurs 2024.
+          Jag löser mina egna arbetsproblem med kod. Överst ligger det jag
+          använder på riktigt; längst ner kursarbeten från min fullstackutbildning
+          2024, som får ligga kvar för att visa var det började.
         </p>
+
+        <FeaturedProject />
 
         {status === 'ready' && (
           <div className="repos__toolbar reveal" style={{ animationDelay: '0.16s' }}>
             <span className="repos__count">
-              {visible.length} {visible.length === 1 ? 'projekt' : 'projekt'}
+              {visible.length} projekt
+              {fromCache && (
+                <span className="repos__notice"> · Visar sparad projektlista.</span>
+              )}
             </span>
             <div className="repos__filters">
               {languages.map((lang) => (
@@ -172,15 +272,18 @@ function GitHubRepos() {
 
         {status === 'error' && (
           <div className="repos__error panel">
-            <p className="repos__error-msg">{error}</p>
-            <a
-              href={`https://github.com/${GITHUB_USER}?tab=repositories`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn--ghost"
-            >
-              Öppna på GitHub
-            </a>
+            <p className="repos__error-msg">
+              Kunde inte hämta projektlistan just nu. Den finns på{' '}
+              <a
+                href={`https://github.com/${GITHUB_USER}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="repos__user"
+              >
+                github.com/{GITHUB_USER}
+              </a>
+              .
+            </p>
           </div>
         )}
 
@@ -189,67 +292,78 @@ function GitHubRepos() {
         )}
 
         {status === 'ready' && visible.length > 0 && (
-          <div className="repos__grid">
-            {visible.map((repo, i) => {
-              const liveUrl = getLiveUrl(repo);
-              return (
-                <article
-                  className="repos__card panel reveal"
-                  key={repo.id}
-                  style={{ animationDelay: `${0.04 * (i % 9)}s` }}
-                >
-                  <header className="repos__card-head">
-                    <h3 className="repos__name">{repo.name}</h3>
-                    <div className="repos__card-badges">
-                      {isApiRepo(repo) && (
-                        <span className="repos__tag">API</span>
+          <>
+            <h2 className="visually-hidden">Projekt från GitHub</h2>
+            <div className="repos__grid">
+              {visible.map((repo, i) => {
+                const liveUrl = getLiveUrl(repo);
+                const category = getCategory(repo);
+
+                return (
+                  <article
+                    className="repos__card panel reveal"
+                    key={repo.id}
+                    style={{ animationDelay: `${0.04 * (i % 9)}s` }}
+                  >
+                    <header className="repos__card-head">
+                      <h3 className="repos__name">{repo.name}</h3>
+                      <div className="repos__card-badges">
+                        {category && <span className="repos__tag">{category}</span>}
+                        {repo.language && (
+                          <span className="repos__lang">
+                            <span
+                              className="repos__lang-dot"
+                              style={{
+                                background: LANG_COLORS[repo.language] || '#5c716b',
+                              }}
+                            />
+                            {repo.language}
+                          </span>
+                        )}
+                      </div>
+                    </header>
+
+                    <p className="repos__desc">
+                      {repo.description || 'Ingen beskrivning angiven.'}
+                    </p>
+
+                    <div className="repos__meta">
+                      {repo.stargazers_count > 0 && (
+                        <span title="Stjärnor">★ {repo.stargazers_count}</span>
                       )}
-                      {repo.language && (
-                        <span className="repos__lang">
-                          <span
-                            className="repos__lang-dot"
-                            style={{ background: LANG_COLORS[repo.language] || '#7a8f89' }}
-                          />
-                          {repo.language}
-                        </span>
+                      {repo.forks_count > 0 && (
+                        <span title="Forks">⑂ {repo.forks_count}</span>
                       )}
+                      <span title="Senast uppdaterad">
+                        Uppdaterad {timeAgo(repo.pushed_at)}
+                      </span>
                     </div>
-                  </header>
 
-                  <p className="repos__desc">
-                    {repo.description || 'Ingen beskrivning angiven.'}
-                  </p>
-
-                  <div className="repos__meta">
-                    <span title="Stjärnor">★ {repo.stargazers_count}</span>
-                    <span title="Forks">⑂ {repo.forks_count}</span>
-                    <span title="Senast uppdaterad">Uppdaterad {timeAgo(repo.pushed_at)}</span>
-                  </div>
-
-                  <footer className="repos__card-foot">
-                    <a
-                      href={repo.html_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="repos__link"
-                    >
-                      Kod
-                    </a>
-                    {liveUrl && (
+                    <footer className="repos__card-foot">
                       <a
-                        href={liveUrl}
+                        href={repo.html_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="repos__link repos__link--live"
+                        className="repos__link"
                       >
-                        Live
+                        Kod
                       </a>
-                    )}
-                  </footer>
-                </article>
-              );
-            })}
-          </div>
+                      {liveUrl && (
+                        <a
+                          href={liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="repos__link repos__link--live"
+                        >
+                          Live
+                        </a>
+                      )}
+                    </footer>
+                  </article>
+                );
+              })}
+            </div>
+          </>
         )}
       </div>
     </section>
