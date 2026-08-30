@@ -38,9 +38,9 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${
 
   <text x="96" y="286" font-family="${SERIF}" font-size="92" font-weight="700" fill="#ffffff" letter-spacing="-2">Oscar Bäckman</text>
 
-  <text x="96" y="352" font-family="${SANS}" font-size="27" font-weight="600" fill="#8fb3aa" letter-spacing="4.2">BUSINESS OPERATIONS COORDINATOR · STOCKHOLM</text>
+  <text x="96" y="352" font-family="${SANS}" font-size="24" font-weight="600" fill="#8fb3aa" letter-spacing="2.5">OPERATIONS- OCH EKONOMIKOORDINATOR · STOCKHOLM</text>
 
-  <text x="96" y="436" font-family="${SANS}" font-size="38" font-weight="400" fill="#f4f7f5">Ekonomi, administration och systemflöden</text>
+  <text x="96" y="436" font-family="${SANS}" font-size="38" font-weight="400" fill="#f4f7f5">Order, fakturering och system som hänger ihop</text>
 </svg>`;
 
 await mkdir(path.dirname(OUT), { recursive: true });

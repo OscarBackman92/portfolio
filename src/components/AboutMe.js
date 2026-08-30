@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from './Seo';
+import { JOB_TITLE, PROFILE_SUMMARY } from '../data/site';
 import './AboutMe.css';
 
 const CV_PDF = '/cv/oscar-backman-cv.pdf';
@@ -23,7 +24,7 @@ function AboutMe() {
     <section className="about section">
       <Seo
         title="Om mig — Oscar Bäckman"
-        description="Bakgrund inom ekonomi, orderadministration och systemintegrationer. Bygger också egna verktyg."
+        description="Operations- och ekonomikoordinator med bakgrund inom order, fakturering och affärssystem. Bygger också egna verktyg."
         path="/about"
       />
       <div className="section-inner">
@@ -40,7 +41,7 @@ function AboutMe() {
               ) : (
                 <img
                   src={useFallback ? PROFILE_IMG_FALLBACK : PROFILE_IMG}
-                  alt="Oscar Bäckman, Business Operations Coordinator i Stockholm"
+                  alt={`Oscar Bäckman, ${JOB_TITLE} i Stockholm`}
                   width={148}
                   height={148}
                   loading="eager"
@@ -53,7 +54,7 @@ function AboutMe() {
               )}
             </div>
             <h2 className="about__name">Oscar Bäckman</h2>
-            <p className="about__role">Business Operations Coordinator</p>
+            <p className="about__role">{JOB_TITLE}</p>
 
             <dl className="about__meta">
               <div>
@@ -84,11 +85,10 @@ function AboutMe() {
 
           <div className="about__body">
             <p className="about__bio reveal" style={{ animationDelay: '0.16s' }}>
-              Jag har flera års erfarenhet av ekonomi, administration och{' '}
-              <span className="hl">systemflöden</span> i IT- och servicebolag.
-              Jag trivs i den koordinerande rollen där processer, avtal och
-              integrationer ska hänga ihop, och arbetar nära ekonomi, försäljning
-              och support.
+              {PROFILE_SUMMARY} Jag har flera års erfarenhet av ekonomi, order och{' '}
+              <span className="hl">affärssystem</span> i IT- och servicebolag — från
+              SuperOffice och Visma till integrationer mellan webshop och fakturering.
+              Jag arbetar nära ekonomi, försäljning och support.
             </p>
             <div className="about__blocks">
               <div className="about__block panel reveal" style={{ animationDelay: '0.2s' }}>

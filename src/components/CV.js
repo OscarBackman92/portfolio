@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Seo from './Seo';
+import { JOB_TITLE, PROFILE_SUMMARY } from '../data/site';
 import './CV.css';
 
 const CV_PDF = '/cv/oscar-backman-cv.pdf';
@@ -126,7 +127,7 @@ function CV() {
     <section className="cv section">
       <Seo
         title="CV — Oscar Bäckman"
-        description="Meritförteckning: business operations, orderadministration och ekonomiassistent 2017–2026."
+        description="Meritförteckning: operations, orderadministration och ekonomi 2017–2026."
         path="/cv"
       />
       <div className="section-inner cv__inner">
@@ -135,7 +136,7 @@ function CV() {
           <div className="cv__header-row">
             <div>
               <h1 className="cv__name display">Oscar Bäckman</h1>
-              <p className="cv__title">Business Operations Coordinator</p>
+              <p className="cv__title">{JOB_TITLE}</p>
               <p className="cv__location">Stockholm, Sverige</p>
             </div>
             <a href={CV_PDF} download className="btn cv__download">
@@ -170,11 +171,9 @@ function CV() {
           <article className="cv__block panel reveal" style={{ animationDelay: '0.08s' }}>
             <h2 className="cv__section-title">Profil</h2>
             <p className="cv__text">
-              Jag har flera års erfarenhet av ekonomi, administration och systemflöden i
-              växande IT- och servicebolag. Jag trivs i den koordinerande rollen där
-              processer, avtal och integrationer ska hänga ihop, och arbetar nära ekonomi,
-              försäljning och support. Jag bygger gärna om manuella rutiner till
-              automatiserade flöden och sätter mig snabbt in i nya system.
+              {PROFILE_SUMMARY} Jag har flera års erfarenhet av ekonomi, order och
+              systemflöden i växande IT- och servicebolag. Jag bygger gärna om manuella
+              rutiner till automatiserade flöden och sätter mig snabbt in i nya system.
             </p>
           </article>
 

@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from './Seo';
+import {
+  HOME_DESCRIPTION,
+  JOB_TITLE,
+  JOB_TITLE_WITH_LOCATION,
+  PAGE_TITLE,
+  PROFILE_SUMMARY,
+} from '../data/site';
 import './Home.css';
 
 const PROFILE_IMG = '/profile.jpg';
@@ -11,8 +18,8 @@ function Home() {
   return (
     <section className="home">
       <Seo
-        title="Oscar Bäckman — Business Operations Coordinator"
-        description="Business Operations Coordinator i Stockholm. Håller ihop ekonomi, order och systemflöden i bolag som växer fortare än sina rutiner."
+        title={PAGE_TITLE}
+        description={HOME_DESCRIPTION}
         path="/"
       />
 
@@ -29,7 +36,7 @@ function Home() {
             ) : (
               <img
                 src={PROFILE_IMG}
-                alt="Oscar Bäckman, Business Operations Coordinator i Stockholm"
+                alt={`Oscar Bäckman, ${JOB_TITLE} i Stockholm`}
                 width={132}
                 height={132}
                 loading="eager"
@@ -40,18 +47,17 @@ function Home() {
           </div>
 
           <div className="home__identity">
-            <p className="home__role">Business Operations Coordinator · Stockholm</p>
+            <p className="home__role">{JOB_TITLE_WITH_LOCATION}</p>
             <p className="home__brand">Oscar Bäckman</p>
           </div>
         </div>
 
         <h1 className="home__headline display reveal" style={{ animationDelay: '0.12s' }}>
-          Ekonomi, administration och systemflöden
+          Order, fakturering och system som hänger ihop
         </h1>
 
         <p className="home__lede reveal" style={{ animationDelay: '0.22s' }}>
-          Jag håller ihop ekonomi, order och system i bolag som växer fortare än
-          sina rutiner. Senast på House of Service, där jag ägde kund- och
+          {PROFILE_SUMMARY} Senast på House of Service, där jag ägde kund- och
           leverantörsfakturaflödet, var huvudkontakt mot vår ekonomipartner och
           byggde vidare på integrationerna mellan affärssystem, webshop och
           fakturering.

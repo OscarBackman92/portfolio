@@ -90,7 +90,7 @@ function Contact() {
     <section className="contact section">
       <Seo
         title="Kontakt — Oscar Bäckman"
-        description="Öppen för roller inom order, inköp och business operations i Stockholm. Hör av dig."
+        description="Öppen för roller inom order, inköp, ekonomiadministration och operations i Stockholm. Hör av dig."
         path="/contact"
       />
       <div className="section-inner contact__inner">
@@ -100,8 +100,8 @@ function Contact() {
         </h1>
         <p className="contact__lede reveal" style={{ animationDelay: '0.12s' }}>
           Jag är öppen för roller inom order, inköp, ekonomiadministration och
-          business operations i Stockholm — gärna där systemen är många och
-          rutinerna halvfärdiga. Skriv några rader så svarar jag inom ett dygn.
+          operations i Stockholm — gärna där systemen är många och rutinerna
+          halvfärdiga. Skriv några rader så svarar jag inom ett dygn.
         </p>
 
         <form

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { JOB_TITLE_WITH_LOCATION } from '../../data/site';
 import './Footer.css';
 
 const NAV = [
@@ -20,7 +21,7 @@ function Footer() {
           <Link to="/" className="footer__name">
             Oscar Bäckman
           </Link>
-          <span className="footer__role">Business Operations Coordinator · Stockholm</span>
+          <span className="footer__role">{JOB_TITLE_WITH_LOCATION}</span>
         </div>
 
         <nav className="footer__nav" aria-label="Sidfotsnavigation">

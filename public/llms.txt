@@ -1,10 +1,12 @@
 # Oscar Bäckman — Portfolio
 
-> Business Operations Coordinator i Stockholm med bakgrund inom ekonomi, order och systemintegrationer.
+> Operations- och ekonomikoordinator i Stockholm. Håller ihop order, fakturering och systemflöden.
 
 ## Om
 
-Oscar Bäckman arbetar med att hålla ihop ekonomi, administration och systemflöden i växande bolag. Han har erfarenhet av SuperOffice, Visma Business, Wint och integrationer mellan affärssystem, webshop och fakturering. Bygger även egna verktyg, bland annat Textverket.
+Oscar Bäckman koordinerar processer mellan ekonomi, order och affärssystem i växande bolag. Han har erfarenhet av SuperOffice, Visma Business, Wint och integrationer mellan webshop och fakturering. Bygger också egna verktyg, bland annat Textverket.
+
+Profil i ett nötskal: Jag håller ihop processerna — ser till att order, fakturering och system fungerar tillsammans, och att rätt information når rätt person i rätt tid.
 
 ## Sidor
 

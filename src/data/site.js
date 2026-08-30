@@ -1,10 +1,20 @@
 import { SITE_URL, OG_IMAGE } from '../config';
 
+export const JOB_TITLE = 'Operations- och ekonomikoordinator';
+export const JOB_TITLE_WITH_LOCATION = `${JOB_TITLE} · Stockholm`;
+export const PAGE_TITLE = `Oscar Bäckman — ${JOB_TITLE}`;
+
+export const HOME_DESCRIPTION =
+  'Operations- och ekonomikoordinator i Stockholm. Håller ihop order, fakturering och systemflöden så att rätt saker händer i rätt ordning.';
+
+export const PROFILE_SUMMARY =
+  'Jag håller ihop processerna — ser till att order, fakturering och system fungerar tillsammans, och att rätt information når rätt person i rätt tid.';
+
 export const PERSON = {
   name: 'Oscar Bäckman',
   givenName: 'Oscar',
   familyName: 'Bäckman',
-  jobTitle: 'Business Operations Coordinator',
+  jobTitle: JOB_TITLE,
   email: 'jan.oscar.backman@gmail.com',
   phone: '+46720101647',
   locality: 'Stockholm',
@@ -16,15 +26,14 @@ export const PERSON = {
 
 export const ROUTES = {
   '/': {
-    title: 'Oscar Bäckman — Business Operations Coordinator',
-    description:
-      'Business Operations Coordinator i Stockholm. Håller ihop ekonomi, order och systemflöden i bolag som växer fortare än sina rutiner.',
+    title: PAGE_TITLE,
+    description: HOME_DESCRIPTION,
     breadcrumb: 'Hem',
   },
   '/about': {
     title: 'Om mig — Oscar Bäckman',
     description:
-      'Bakgrund inom ekonomi, orderadministration och systemintegrationer. Bygger också egna verktyg.',
+      'Operations- och ekonomikoordinator med bakgrund inom order, fakturering och affärssystem. Bygger också egna verktyg.',
     breadcrumb: 'Om mig',
   },
   '/projects': {
@@ -36,13 +45,13 @@ export const ROUTES = {
   '/cv': {
     title: 'CV — Oscar Bäckman',
     description:
-      'Meritförteckning: business operations, orderadministration och ekonomiassistent 2017–2026.',
+      'Meritförteckning: operations, orderadministration och ekonomi 2017–2026.',
     breadcrumb: 'CV',
   },
   '/contact': {
     title: 'Kontakt — Oscar Bäckman',
     description:
-      'Öppen för roller inom order, inköp och business operations i Stockholm. Hör av dig.',
+      'Öppen för roller inom order, inköp, ekonomiadministration och operations i Stockholm. Hör av dig.',
     breadcrumb: 'Kontakt',
   },
 };
