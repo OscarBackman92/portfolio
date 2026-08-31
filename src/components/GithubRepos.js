@@ -143,9 +143,9 @@ function isFeatured(repo) {
   return (repo.topics || []).includes('featured');
 }
 
-/** Visas i Textverket-blocket ovanför listan, ska inte dyka upp två gånger */
+/** Visas i featured-korten ovanför listan, ska inte dyka upp två gånger */
 function isShowcased(repo) {
-  return SHOWCASE_REPOS.has(repo.name) && isFeatured(repo);
+  return SHOWCASE_REPOS.has(repo.name);
 }
 
 function timeAgo(dateStr) {
