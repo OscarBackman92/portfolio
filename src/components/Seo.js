@@ -28,6 +28,10 @@ function Seo({ title, description, path, noindex = false, jsonLd = [] }) {
       <meta name="description" content={description} />
       <meta name="robots" content={robots} />
       <link rel="canonical" href={url} />
+      <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+      <link rel="icon" href="/favicon-32.png?v=2" type="image/png" sizes="32x32" />
+      <link rel="shortcut icon" href="/favicon.ico?v=2" />
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
       <meta property="og:site_name" content="Oscar Bäckman" />
       <meta property="og:title" content={title} />
