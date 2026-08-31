@@ -10,12 +10,12 @@ Profil i ett nötskal: Jag håller ihop processerna — ser till att order, fakt
 
 ## Sidor
 
-- Hem: https://oscarbackman.se/
-- Om mig: https://oscarbackman.se/about
-- Projekt: https://oscarbackman.se/projects
-- CV: https://oscarbackman.se/cv
-- Kontakt: https://oscarbackman.se/contact
-- CV (PDF): https://oscarbackman.se/cv/oscar-backman-cv.pdf
+- Hem: https://www.obackman.se/
+- Om mig: https://www.obackman.se/about
+- Projekt: https://www.obackman.se/projects
+- CV: https://www.obackman.se/cv
+- Kontakt: https://www.obackman.se/contact
+- CV (PDF): https://www.obackman.se/cv/oscar-backman-cv.pdf
 
 ## Kontakt
 

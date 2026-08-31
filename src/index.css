@@ -36,6 +36,7 @@
   /* Layout */
   --nav-h: 72px;
   --maxw: 1120px;
+  --shell-pad: clamp(1.5rem, 4.5vw, 4.5rem);
   --radius: 2px;
   --radius-lg: 6px;
 }

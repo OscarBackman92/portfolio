@@ -240,14 +240,21 @@ function GitHubRepos() {
         path="/projects"
       />
       <div className="section-inner">
-        <div className="eyebrow reveal">Projekt</div>
-        <h1 className="repos__title display reveal" style={{ animationDelay: '0.08s' }}>
-          Saker jag byggt
-        </h1>
-        <p className="repos__lede reveal" style={{ animationDelay: '0.12s' }}>
-          Jag löser mina egna arbetsproblem med kod. Här ligger det jag faktiskt
-          använder och underhåller — inte allt jag någonsin har byggt.
-        </p>
+        <header className="repos__hero">
+          <span className="repos__mark" aria-hidden="true">
+            byggt
+          </span>
+          <div className="repos__hero-copy">
+            <div className="eyebrow reveal">Projekt</div>
+            <h1 className="repos__title display reveal" style={{ animationDelay: '0.08s' }}>
+              Saker jag <em>byggt</em>
+            </h1>
+          </div>
+          <p className="repos__lede reveal" style={{ animationDelay: '0.12s' }}>
+            Jag löser mina egna arbetsproblem med kod. Här ligger det jag faktiskt
+            använder och underhåller — inte allt jag någonsin har byggt.
+          </p>
+        </header>
 
         <FeaturedProject />
 
@@ -267,6 +274,14 @@ function GitHubRepos() {
                   className={`repos__filter ${filter === lang ? 'is-active' : ''}`}
                   onClick={() => setFilter(lang)}
                 >
+                  {lang !== 'ALL' && (
+                    <span
+                      className="repos__filter-dot"
+                      style={{
+                        background: LANG_COLORS[lang] || '#5c716b',
+                      }}
+                    />
+                  )}
                   {lang === 'ALL' ? 'Alla' : lang}
                 </button>
               ))}
@@ -317,6 +332,9 @@ function GitHubRepos() {
                     key={repo.id}
                     style={{ animationDelay: `${0.04 * (i % 9)}s` }}
                   >
+                    <span className="repos__index" aria-hidden="true">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
                     <header className="repos__card-head">
                       <h3 className="repos__name">{repo.name}</h3>
                       <div className="repos__card-badges">

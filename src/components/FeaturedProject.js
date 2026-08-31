@@ -10,9 +10,18 @@ function FeaturedProject() {
   return (
     <article className="featured reveal" style={{ animationDelay: '0.14s' }}>
       <div className="featured__body">
-        <p className="featured__eyebrow">I DRIFT</p>
+        <p className="featured__eyebrow">
+          <span className="featured__live" aria-hidden="true" />
+          I drift
+        </p>
 
         <h2 className="featured__title display">Textverket</h2>
+
+        <ul className="featured__chips">
+          <li>Offertmejl</li>
+          <li>Produkttexter</li>
+          <li>Kundmejl</li>
+        </ul>
 
         <p className="featured__text">
           Gratis AI-verktyg som skriver offertmejl, produkttexter och kundmejl åt
@@ -28,6 +37,7 @@ function FeaturedProject() {
             className="btn"
           >
             Besök Textverket
+            <span aria-hidden="true">→</span>
           </a>
           <a
             href={REPO_URL}
@@ -40,9 +50,28 @@ function FeaturedProject() {
         </div>
       </div>
 
-      <div className="featured__shot featured__shot--brand" aria-hidden="true">
-        <span className="featured__shot-label">Textverket</span>
-        <span className="featured__shot-sub">AI-verktyg för svenska småföretag</span>
+      <div className="featured__shot" aria-hidden="true">
+        <div className="featured__stack">
+          <span />
+          <span />
+        </div>
+        <div className="featured__window">
+          <div className="featured__window-bar">
+            <span />
+            <span />
+            <span />
+            <em>offertutkast.md</em>
+          </div>
+          <div className="featured__window-body">
+            <p className="featured__window-kicker">Offertmejl</p>
+            <p>Hej Anna,</p>
+            <p>
+              Tack för er förfrågan. Här är ett utkast ni kan skicka i dag —
+              kort, tydligt och utan fluff.
+            </p>
+            <span className="featured__caret" />
+          </div>
+        </div>
       </div>
     </article>
   );

@@ -13,7 +13,7 @@ const RATE_WINDOW = 60 * 1000;
 
 const MESSAGES = {
   sending: 'Skickar…',
-  success: 'Tack! Meddelandet är skickat — jag återkommer inom ett dygn.',
+  success: 'Tack! Meddelandet är skickat — jag återkommer så snart jag kan.',
   error:
     'Något gick fel. Mejla mig direkt på jan.oscar.backman@gmail.com så löser vi det.',
   throttled: 'Du skickade nyss ett meddelande — vänta en minut.',
@@ -101,7 +101,7 @@ function Contact() {
         <p className="contact__lede reveal" style={{ animationDelay: '0.12s' }}>
           Jag är öppen för roller inom order, inköp, ekonomiadministration och
           operations i Stockholm — gärna där systemen är många och rutinerna
-          halvfärdiga. Skriv några rader så svarar jag inom ett dygn.
+          halvfärdiga. Skriv några rader så återkommer jag så snart jag kan.
         </p>
 
         <form

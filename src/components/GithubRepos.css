@@ -1,13 +1,49 @@
+.repos__hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 1.5rem 2.5rem;
+  align-items: end;
+  margin-bottom: 2.4rem;
+  overflow: hidden;
+}
+.repos__mark {
+  position: absolute;
+  right: -0.08em;
+  top: -0.42em;
+  z-index: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(6.5rem, 18vw, 11.5rem);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  color: var(--accent);
+  opacity: 0.08;
+  pointer-events: none;
+  user-select: none;
+}
+.repos__hero-copy,
+.repos__lede {
+  position: relative;
+  z-index: 1;
+}
 .repos__title {
-  font-size: clamp(2rem, 4.5vw, 3rem);
-  margin-bottom: 0.75rem;
+  font-size: clamp(2.15rem, 5vw, 3.35rem);
+  margin-bottom: 0;
   color: var(--ink);
-  max-width: 16ch;
+  max-width: 10ch;
+}
+.repos__title em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent-deep);
 }
 .repos__lede {
   color: var(--text-dim);
-  margin-bottom: 2rem;
-  max-width: 52ch;
+  margin: 0;
+  max-width: 42ch;
+  padding-bottom: 0.35rem;
 }
 .repos__user {
   color: var(--accent-deep);
@@ -42,6 +78,9 @@
   gap: 0.4rem;
 }
 .repos__filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-family: var(--font-body);
   font-size: 0.82rem;
   font-weight: 500;
@@ -53,6 +92,12 @@
   cursor: pointer;
   transition: all 0.2s ease;
 }
+.repos__filter-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
 .repos__filter:hover {
   color: var(--ink);
   border-color: var(--line-strong);
@@ -61,6 +106,10 @@
   color: #fff;
   background: var(--accent);
   border-color: var(--accent);
+}
+.repos__filter:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .repos__grid {
@@ -72,13 +121,44 @@
 .repos__card {
   display: flex;
   flex-direction: column;
-  padding: 1.35rem;
+  padding: 1.2rem 1.35rem 1.35rem 1.5rem;
+  position: relative;
+  overflow: hidden;
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
+.repos__index {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--text-faint);
+  margin-bottom: 0.7rem;
+  transition: color 0.2s ease;
+}
+.repos__card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.28s ease;
+}
 .repos__card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(15, 107, 92, 0.28);
-  box-shadow: 0 14px 36px -22px rgba(11, 31, 28, 0.35);
+  transform: translateY(-5px);
+  border-color: rgba(15, 107, 92, 0.38);
+  box-shadow: 0 18px 36px -28px rgba(11, 31, 28, 0.55);
+}
+.repos__card:hover::before {
+  transform: scaleY(1);
+}
+.repos__card:hover .repos__index {
+  color: var(--accent);
+}
+.repos__card:hover .repos__name {
+  color: var(--accent-deep);
 }
 
 .repos__card-head {
@@ -111,6 +191,7 @@
   font-weight: 600;
   color: var(--ink);
   word-break: break-word;
+  transition: color 0.2s ease;
 }
 .repos__lang {
   display: inline-flex;
@@ -153,9 +234,38 @@
   color: var(--accent-deep);
   transition: color 0.2s ease;
 }
+.repos__link:not(.repos__link--live)::after {
+  content: " →";
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.repos__card:hover .repos__link:not(.repos__link--live)::after {
+  transform: translateX(3px);
+}
 .repos__link:hover { color: var(--accent); }
-.repos__link--live { color: var(--ink); }
-.repos__link--live:hover { color: var(--accent); }
+.repos__link--live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--accent-deep);
+  background: var(--accent-soft);
+  padding: 0.22rem 0.55rem;
+  border-radius: var(--radius);
+}
+.repos__link--live::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.repos__link--live:hover {
+  color: #fff;
+  background: var(--accent);
+}
+.repos__link--live:hover::before {
+  background: #fff;
+}
 
 .repos__skeleton {
   height: 200px;
@@ -189,4 +299,25 @@
   text-align: center;
   color: var(--text-dim);
   padding: 2rem;
+}
+
+@media (max-width: 760px) {
+  .repos__hero {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    margin-bottom: 1.8rem;
+  }
+  .repos__title {
+    max-width: 12ch;
+  }
+  .repos__mark {
+    top: -0.28em;
+    opacity: 0.06;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .repos__card:hover {
+    transform: none;
+  }
 }
