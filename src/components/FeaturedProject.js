@@ -34,6 +34,22 @@ const SHOWCASES = [
       { title: 'Skicka CV', meta: 'Wint · idag' },
     ],
   },
+  {
+    repo: 'sbms',
+    title: 'Lindström Båt',
+    liveUrl: 'https://oscarbackman92.github.io/sbms/',
+    repoUrl: 'https://github.com/OscarBackman92/sbms',
+    chips: ['Motorservice', 'Underhåll', 'Reparationer'],
+    text: 'Sajt för en ambulerande båt- och motormekaniker i Nacka och Värmdö. Tjänster, om Erik och en tydlig väg till kontakt — byggd så att en båtägare snabbt förstår vem som kommer och vad som ingår.',
+    visitLabel: 'Besök sajten',
+    windowFile: 'uppdrag.md',
+    windowKicker: 'Nästa jobb',
+    windowKind: 'list',
+    windowItems: [
+      { title: 'Motorservice', meta: 'Värmdö · fredag' },
+      { title: 'Vinterkonservering', meta: 'Nacka · nästa vecka' },
+    ],
+  },
 ];
 
 export const SHOWCASE_REPOS = new Set(SHOWCASES.map((item) => item.repo));
