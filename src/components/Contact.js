@@ -11,10 +11,6 @@ const EMAILJS_PUBLIC_KEY = '6rEVB8tqgeAY6mkgV';
 const RATE_KEY = 'contact:lastSentAt';
 const RATE_WINDOW = 60 * 1000;
 
-/** Frekvensspärr: en sändning per minut */
-const RATE_KEY = 'contact:lastSentAt';
-const RATE_WINDOW = 60 * 1000;
-
 const MESSAGES = {
   sending: 'Skickar…',
   success: 'Tack! Meddelandet är skickat — jag återkommer så snart jag kan.',
