@@ -11,6 +11,10 @@ const EMAILJS_PUBLIC_KEY = '6rEVB8tqgeAY6mkgV';
 const RATE_KEY = 'contact:lastSentAt';
 const RATE_WINDOW = 60 * 1000;
 
+/** Frekvensspärr: en sändning per minut */
+const RATE_KEY = 'contact:lastSentAt';
+const RATE_WINDOW = 60 * 1000;
+
 const MESSAGES = {
   sending: 'Skickar…',
   success: 'Tack! Meddelandet är skickat — jag återkommer så snart jag kan.',
@@ -44,8 +48,9 @@ function markSent() {
 
 function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
-  const [company, setCompany] = useState('');
+  const [honeypot, setHoneypot] = useState('');
   const [status, setStatus] = useState('idle');
+  const [errorDetail, setErrorDetail] = useState('');
 
   useEffect(() => {
     emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
@@ -56,19 +61,20 @@ function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (status === 'error' || status === 'throttled' || status === 'incomplete' || status === 'invalidEmail') {
       setStatus('idle');
+      setErrorDetail('');
     }
   };
 
   const resetForm = () => {
     setFormData({ name: '', email: '', subject: '', message: '' });
-    setCompany('');
+    setHoneypot('');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Honeypot: bara bottar fyller i fältet. Avbryt tyst.
-    if (company.trim()) {
+    if (honeypot.trim()) {
       setStatus('success');
       resetForm();
       return;
@@ -95,6 +101,7 @@ function Contact() {
     }
 
     setStatus('sending');
+    setErrorDetail('');
 
     const body = [
       `Från: ${name}`,
@@ -104,25 +111,33 @@ function Contact() {
       message,
     ].join('\n');
 
+    // Skicka inte "email" som mallfält — om To i EmailJS är {{email}}
+    // hamnar mailet hos besökaren i stället för i din inkorg.
     emailjs
-      .send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
-        name,
-        email,
-        from_name: name,
-        from_email: email,
-        user_name: name,
-        user_email: email,
-        reply_to: email,
-        subject,
-        title: subject,
-        message: body,
-      })
+      .send(
+        EMAILJS_SERVICE,
+        EMAILJS_TEMPLATE,
+        {
+          from_name: name,
+          from_email: email,
+          reply_to: email,
+          subject,
+          message: body,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      )
       .then(() => {
         markSent();
         setStatus('success');
         resetForm();
       })
-      .catch(() => setStatus('error'));
+      .catch((err) => {
+        const text =
+          (err && (err.text || err.message)) ||
+          'EmailJS avvisade sändningen.';
+        setErrorDetail(String(text));
+        setStatus('error');
+      });
   };
 
   const sending = status === 'sending';
@@ -219,15 +234,17 @@ function Contact() {
 
           {/* Honeypot — dolt utanför skärmen, inte med display:none */}
           <div className="contact__honeypot" aria-hidden="true">
-            <label htmlFor="contact-company">Företag</label>
+            <label htmlFor="contact-hp">Lämna tomt</label>
             <input
-              id="contact-company"
+              id="contact-hp"
               type="text"
-              name="company"
-              value={company}
-              onChange={(e) => setCompany(e.target.value)}
+              name="contact_hp_field"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
               tabIndex={-1}
               autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
             />
           </div>
 
@@ -247,6 +264,7 @@ function Contact() {
             }`}
           >
             {statusMessage}
+            {errorDetail && status === 'error' ? ` (${errorDetail})` : ''}
           </p>
         </form>
 
