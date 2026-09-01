@@ -17,7 +17,13 @@ const MESSAGES = {
   error:
     'Något gick fel. Mejla mig direkt på jan.oscar.backman@gmail.com så löser vi det.',
   throttled: 'Du skickade nyss ett meddelande — vänta en minut.',
+  incomplete: 'Fyll i namn, e-post, ämne och meddelande.',
+  invalidEmail: 'Ange en giltig e-postadress så jag kan svara.',
 };
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
 
 function isThrottled() {
   try {
@@ -48,7 +54,9 @@ function Contact() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    if (status === 'error' || status === 'throttled') setStatus('idle');
+    if (status === 'error' || status === 'throttled' || status === 'incomplete' || status === 'invalidEmail') {
+      setStatus('idle');
+    }
   };
 
   const resetForm = () => {
@@ -71,10 +79,44 @@ function Contact() {
       return;
     }
 
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const subject = formData.subject.trim();
+    const message = formData.message.trim();
+
+    if (!name || !email || !subject || !message) {
+      setStatus('incomplete');
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      setStatus('invalidEmail');
+      return;
+    }
+
     setStatus('sending');
 
+    const body = [
+      `Från: ${name}`,
+      `E-post: ${email}`,
+      `Ämne: ${subject}`,
+      '',
+      message,
+    ].join('\n');
+
     emailjs
-      .sendForm(EMAILJS_SERVICE, EMAILJS_TEMPLATE, e.target)
+      .send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+        name,
+        email,
+        from_name: name,
+        from_email: email,
+        user_name: name,
+        user_email: email,
+        reply_to: email,
+        subject,
+        title: subject,
+        message: body,
+      })
       .then(() => {
         markSent();
         setStatus('success');
@@ -111,50 +153,65 @@ function Contact() {
         >
           <div className="contact__row">
             <label className="contact__field">
-              <span className="contact__label">Namn</span>
+              <span className="contact__label">
+                Namn <span className="contact__req" aria-hidden="true">*</span>
+              </span>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 required
+                aria-required="true"
+                minLength={2}
                 autoComplete="name"
                 placeholder="Ditt namn"
               />
             </label>
             <label className="contact__field">
-              <span className="contact__label">E-post</span>
+              <span className="contact__label">
+                E-post <span className="contact__req" aria-hidden="true">*</span>
+              </span>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
+                aria-required="true"
                 autoComplete="email"
+                inputMode="email"
                 placeholder="din@epost.se"
               />
             </label>
           </div>
 
           <label className="contact__field">
-            <span className="contact__label">Ämne</span>
+            <span className="contact__label">
+              Ämne <span className="contact__req" aria-hidden="true">*</span>
+            </span>
             <input
               type="text"
               name="subject"
               value={formData.subject}
               onChange={handleChange}
               required
+              aria-required="true"
               placeholder="T.ex. jobbmöjlighet"
             />
           </label>
 
           <label className="contact__field">
-            <span className="contact__label">Meddelande</span>
+            <span className="contact__label">
+              Meddelande <span className="contact__req" aria-hidden="true">*</span>
+            </span>
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
               required
+              aria-required="true"
+              minLength={10}
               rows="5"
               placeholder="Skriv ditt meddelande…"
             />
@@ -183,7 +240,11 @@ function Contact() {
             aria-live="polite"
             className={`contact__status${
               status === 'success' ? ' contact__status--ok' : ''
-            }${status === 'error' ? ' contact__status--err' : ''}`}
+            }${
+              status === 'error' || status === 'incomplete' || status === 'invalidEmail'
+                ? ' contact__status--err'
+                : ''
+            }`}
           >
             {statusMessage}
           </p>

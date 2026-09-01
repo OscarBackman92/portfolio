@@ -36,6 +36,14 @@
   text-transform: uppercase;
   color: var(--text-faint);
 }
+.contact__req {
+  color: var(--accent);
+  font-weight: 700;
+}
+.contact__field input:user-invalid,
+.contact__field textarea:user-invalid {
+  border-color: var(--danger);
+}
 .contact__field input,
 .contact__field textarea {
   width: 100%;
