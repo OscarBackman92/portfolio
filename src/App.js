@@ -1,8 +1,10 @@
 import React, { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Breadcrumbs from './components/Breadcrumbs';
+import GoogleAnalytics from './components/GoogleAnalytics';
 import './App.css';
 
 // Ruttbaserad kodsplittring — EmailJS-klienten behövs bara på /contact
@@ -41,6 +43,8 @@ function App() {
       </main>
 
       <Footer />
+      <Analytics />
+      <GoogleAnalytics />
     </div>
   );
 }
