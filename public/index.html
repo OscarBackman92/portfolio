@@ -78,6 +78,40 @@
         ]
       }
     </script>
+
+    <!-- Google tag (gtag.js) + Consent Mode v2 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-56SB9P6ZF9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+
+      /* Allt nekat tills besökaren väljer. Måste köra före config. */
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+        wait_for_update: 500
+      });
+
+      /* Återställ ett tidigare val så bannern inte frågar igen. */
+      try {
+        var saved = localStorage.getItem('obk_consent');
+        if (saved === 'granted' || saved === 'denied') {
+          gtag('consent', 'update', {
+            ad_storage: saved,
+            ad_user_data: saved,
+            ad_personalization: saved,
+            analytics_storage: saved
+          });
+        }
+      } catch (e) {}
+
+      gtag('js', new Date());
+      gtag('config', 'G-56SB9P6ZF9');
+    </script>
   </head>
   <body>
     <noscript>

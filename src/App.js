@@ -5,6 +5,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Breadcrumbs from './components/Breadcrumbs';
 import GoogleAnalytics from './components/GoogleAnalytics';
+import CookieBanner from './components/CookieBanner';
 import './App.css';
 
 // Ruttbaserad kodsplittring — EmailJS-klienten behövs bara på /contact
@@ -45,6 +46,7 @@ function App() {
       <Footer />
       <Analytics />
       <GoogleAnalytics />
+      <CookieBanner />
     </div>
   );
 }
