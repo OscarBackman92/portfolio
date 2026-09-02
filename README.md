@@ -55,7 +55,7 @@ Ingen Tailwind eller Framer Motion — designsystemet ligger i `src/index.css` (
 | Styling | Custom CSS + CSS-variabler |
 | Data | GitHub REST API (publik, utan autentisering) |
 | E-post | EmailJS |
-| Prod-server | Express (`server.js`) — serverar den statiska builden |
+| Hosting | Vercel (statisk SPA, ingen Node-server) |
 
 ---
 
@@ -71,7 +71,7 @@ npm run dev        # utvecklingsserver → http://localhost:3000
 ```sh
 npm run build      # produktionsbuild till /build
 npm test           # tester
-npm start          # servera build via Express (t.ex. Heroku)
+npm start          # samma som npm run dev
 ```
 
 Konfiguration:
@@ -95,17 +95,6 @@ Appen är en **statisk SPA** (GitHub API anropas från webbläsaren). Statisk ho
    - **Build command:** `npm run build`
    - **Output / publish directory:** `build`
 4. SPA-routing är redan konfigurerad via `vercel.json` och `public/_redirects`, så djuplänkar som `/projects` fungerar.
-
-### Heroku
-
-`Procfile`, `server.js` och `heroku-postbuild` finns på plats:
-
-```sh
-heroku create my-portfolio
-git push heroku main
-```
-
-Express serverar `/build` med SPA-fallback. Fungerar, men en Node-server bara för statiska filer är onödigt tungt — föredra Vercel/Netlify.
 
 ### GitHub Pages
 

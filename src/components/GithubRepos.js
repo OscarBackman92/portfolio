@@ -125,12 +125,13 @@ function getLiveUrl(repo) {
   if (!repo.homepage) return null;
 
   try {
-    if (DEAD_HOMEPAGE_HOSTS.has(new URL(repo.homepage).hostname)) return null;
+    const url = new URL(repo.homepage);
+    if (url.protocol !== 'https:') return null;
+    if (DEAD_HOMEPAGE_HOSTS.has(url.hostname)) return null;
+    return url.href;
   } catch {
     return null;
   }
-
-  return repo.homepage;
 }
 
 function getCategory(repo) {
